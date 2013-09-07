@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DigitalDailyReport | User: Add Cinema</title>
+<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+<link rel="stylesheet" type="text/css" href="./css/default.css"/>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
+<script type="text/javascript" src="./js/globalize.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script>
+function formSubmit(){
+	document.getElementById("form").submit();
+}
+</script>
+</head>
+
+<form action="/addhall" method="post" id="form">
+
+<div class="framework" style="width:610px;">
+
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td width="260">
+        <label for="cinema" class="inp_lbl">Cinema</label>
+        <input name="name" type="text" class="txt_box" size="37" />
+      </td>
+      <td width="130">
+        <label for="code" class="inp_lbl">Code</label>
+        <input name="code_no" type="text" class="txt_box" size="17" />
+      </td>
+      <td>
+        <label for="place" class="inp_lbl">Place</label>
+        <input name="place" type="text" class="txt_box" size="20" />
+      </td>
+    </tr>
+  </table>
+    <div class="ruler"></div>
+  
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td width="260">
+        <label for="circuit" class="inp_lbl">Circuit</label>
+        <input name="distributor" type="text" size="37" class="txt_box" />
+      </td>
+      <td width="60">
+        <label for="grade" class="inp_lbl">Grade</label>
+        <input name="grade" type="text" size="4" class="txt_box" />
+      </td>
+      <td><input type="submit" value="ADD CINEMA" class="inp_obj" style="width:100%;" onclick="formSubmit()"/></td>
+    </tr>
+  </table>
+<div class="ruler"></div>
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td>
+        <label for="url" class="inp_lbl">Seat Plan (html)</label>
+        <input name="seatplan_url" type="text" class="txt_box" size="37" />
+      </td>
+      
+    </tr>
+  </table>
+    <div class="ruler"></div>
+  
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td colspan="3" class="tkt_cat">TICKET CATEGORY</td>
+      <td align="center">OPENING NUMBER</td>
+      <td align="center">BASIC</td>
+      <td align="center">ENT. TAX</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tkt_cat">Box</td>
+      <td class="tkt_cat"><input name="box_total" id="box_total" value="0" size="4" maxlength="3" min="0" class="tkt_count_spinner" /></td>
+      <td width="25"><input name="box_full_ticket" id="box_ON" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td width="25"><input name="box_full_basic" class="tkt_price_spinner" id="input" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td width="25"><input name="box_full_ent" class="tkt_price_spinner" id="box_ent" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td rowspan="4" width="55" class="tkt_cat">Balcony</td>
+      <td rowspan="4" width="55" class="tkt_cat"><input name="balcony_total" id="balcony_total" value="0" size="4" maxlength="3" min="0" class="tkt_count_spinner" /></td>
+      <td width="50" class="tkt_sub_cat">Full</td>
+      <td><input name="balcony_full_ticket" id="input21" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="balcony_full_basic" class="tkt_price_spinner" id="input2" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="balcony_full_ent" class="tkt_price_spinner" id="balcony_full_ent" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td><input name="balcony_half_ticket" id="input22" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="balcony_half_basic" class="tkt_price_spinner" id="input3" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="balcony_half_ent" class="tkt_price_spinner" id="balcony_half_ent" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td><input name="balcony_service_ticket" id="input23" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="balcony_service_basic" class="tkt_price_spinner" id="input6" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="balcony_service_ent" class="tkt_price_spinner" id="balcony_service_ent" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Complimentary</td>
+      <td><input name="balcony_complimentary_ticket" id="input4" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+	  <input type="hidden" name="balcony_complimentary_basic" value="0.0" /><input type="hidden" name="balcony_complimentary_ent" value="0.0" />
+      </tr>
+    <tr>
+      <td rowspan="4" class="tkt_cat">ODC</td>
+      <td rowspan="4" class="tkt_cat"><input name="odc_total" id="odc_total" value="0" size="4" maxlength="3" min="0" class="tkt_count_spinner" /></td>
+      <td class="tkt_sub_cat">Full</td>
+      <td><input name="odc_full_ticket" id="input24" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="odc_full_basic" class="tkt_price_spinner" id="input7" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="odc_full_ent" class="tkt_price_spinner" id="odc_full_ent" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td><input name="odc_half_ticket" id="input25" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="odc_half_basic" class="tkt_price_spinner" id="input8" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="odc_half_ent" class="tkt_price_spinner" id="input16" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td><input name="odc_service_ticket" id="input26" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="odc_service_basic" class="tkt_price_spinner" id="input10" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="odc_service_ent" class="tkt_price_spinner" id="input17" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Complimentary</td>
+      <td><input name="odc_complimentary_ticket" id="input5" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+	  <input type="hidden" name="odc_complimentary_basic" value="0.0" /><input type="hidden" name="odc_complimentary_ent" value="0.0" />
+      </tr>
+    <tr>
+      <td rowspan="4" class="tkt_cat">First ClasS</td>
+      <td rowspan="4" class="tkt_cat"><input name="firstclass_total" id="firstclass_total" value="0" size="4" maxlength="3" min="0" class="tkt_count_spinner" /></td>
+      <td class="tkt_sub_cat">Full</td>
+      <td><input name="firstclass_full_ticket" id="input27" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="firstclass_full_basic" class="tkt_price_spinner" id="input12" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="firstclass_full_ent" class="tkt_price_spinner" id="input18" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td><input name="firstclass_half_ticket" id="input28" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="firstclass_half_basic" class="tkt_price_spinner" id="input13" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="firstclass_half_ent" class="tkt_price_spinner" id="input19" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td><input name="firstclass_service_ticket" id="input29" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+      <td><input name="firstclass_service_basic" class="tkt_price_spinner" id="input15" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td><input name="firstclass_service_ent" class="tkt_price_spinner" id="input20" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      </tr>
+    <tr>
+      <td class="tkt_sub_cat">Complimentary</td>
+      <td><input name="firstclass_complimentary_ticket" id="input9" value="0" size="11" maxlength="11" min="0" class="tkt_count_spinner" /></td>
+	  <input type="hidden" name="firstclass_complimentary_basic" value="0.0" /><input type="hidden" name="firstclass_complimentary_ent" value="0.0" />
+      </tr>
+  </table>
+  
+  <div class="ruler"></div>
+  
+  <table width="100%" border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <td width="33%">NFC: <input name="nfc" class="tkt_price_spinner" id="input13" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td width="33%">Theatre: <input name="theatre" class="tkt_price_spinner" id="input13" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" /></td>
+      <td>Distributor Share: <input name="percent" class="tkt_price_spinner" id="input13" style="text-align:right;" min="0" value="0.0" size="8" maxlength="6" />%</td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>
+  
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td align="center"><label for="firstname" class="inp_lbl" style="margin:0px;">SHOW 1</label><input type="time" class="txt_box" name="show1"/></td>
+      <td align="center"><label for="lastname" class="inp_lbl" style="margin:0px;">SHOW 2</label><input type="time" class="txt_box" name="show2"/></td>
+      <td align="center"><label for="firstname" class="inp_lbl" style="margin:0px;">SHOW 3</label><input type="time" class="txt_box" name="show3"/></td>
+      <td align="center"><label for="lastname" class="inp_lbl" style="margin:0px;">SHOW 4</label><input type="time" class="txt_box" name="show4"/></td>
+    </tr>
+  </table>
+</form>
+<div class="ruler"></div>
+  <div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in as administrator<label class="active_txt"></label></span>
+    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
+  </div><div class="ruler"></div>
+<div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+</div>
+
+</body></html>

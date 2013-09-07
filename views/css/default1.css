@@ -1,0 +1,139 @@
+/* CSS Document */
+
+
+table {
+	border-collapse:collapse;margin-right:5px; position:relative; float:left; 
+}
+table,th,td {
+	border: 1px solid black;
+}
+td {
+	text-transform:uppercase;
+}
+
+td.txt_title {
+	font-family:"Gotham Rounded Book";
+	text-align:center;
+	font-size:8pt;
+	height:30px;
+	color:rgba(255,255,255,1);
+	background:rgba(67,67,67,1);
+}
+	td.title_ON {
+		width:60px;
+	}
+	td.title_CN {
+		width:60px;
+	}
+	td.title_NS {
+		width:30px;
+	}
+	td.title_A {
+		width:85px;
+	}
+	
+td.txt_title_T {
+	font-family:"Gotham Rounded Book";
+	text-align:right;
+	font-size:9pt;
+	height:20px;
+	color:rgba(255,255,255,1);
+	background:rgba(67,67,67,1);
+}
+
+td.tkt_txt {
+	font-family:MICRPersonal;
+	text-align:right;
+	font-size:10pt;
+	height:15px;
+}
+	td.tkt_txt_typ_ON {
+		color:rgba(0,0,0,1);
+		background:rgba(245,245,245,1);
+	}
+	td.tkt_txt_typ_CN {
+		color:rgba(0,0,0,1);
+		background:rgba(245,245,245,1);
+	}
+	td.tkt_txt_typ_NS {
+		color:rgba(0,0,0,1);
+		background:rgba(245,245,245,1);
+	}
+	td.tkt_txt_typ_A {
+		color:rgba(0,0,0,1);
+		background:rgba(245,245,245,1);
+	}
+
+td.break {
+	border-bottom:#000 2px solid;
+}
+td.show {
+	font-family:Gotham;
+	text-align:center;
+	font-weight:bold;
+	font-size:12pt;
+	color:rgba(255,255,255,1);
+	background:rgba(0,0,0,1);
+	height:30px;
+	letter-spacing:1px;
+}
+td.showTime {
+	font-family:Gotham;
+	text-align:center;
+	font-weight:bold;
+	font-size:12pt;
+	colour:rgba(0,0,0,1);
+  background:rgba(255,255,255,1);
+	height:30px;
+}
+td.tax {
+	font-family:Gotham;
+	text-align:center;
+	font-weight:bold;
+	font-size:10pt;
+	color:rgba(255,255,255,1);
+	background:rgba(0,0,0,1);
+	height:30px;
+	letter-spacing:1px;
+}
+td.title_class {
+	font-family:Gotham;
+	font-weight:bold;
+	text-align:center;
+	font-size:10pt;
+	line-height:15px;
+	color:rgba(255,255,255,1);
+	background:rgba(67,67,67,1);
+}
+td.txt_class_type {
+	font-family:"Gotham Rounded Book";
+	text-align:left;
+	font-size:8pt;
+	width:50px;
+	color:rgba(255,255,255,1);
+	background:rgba(67,67,67,1);
+}
+td.titlea {
+	font-family:"Gotham Rounded Book";
+	text-align:right;
+	font-size:8pt;
+	color:rgba(255,255,255,1);
+	background:rgba(67,67,67,1);
+}
+td.amount {
+	font-family:MICRPersonal;
+	text-align:right;
+	font-size:10pt;
+	height:15px;
+	color:rgba(0,0,0,1);
+	background:rgba(245,245,245,1);
+}
+td.count {
+	font-family:MICRPersonal;
+	text-align:right;
+	font-size:10pt;
+	height:15px;
+	color:rgba(0,0,0,1);
+	background:rgba(255,255,153,1);
+}
+<title>Digital Daily Report</title>

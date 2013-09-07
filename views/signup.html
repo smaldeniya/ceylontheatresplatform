@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DigitalDailyReport | Add User</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script>
+function formSubmit()
+{
+document.getElementById("form").submit();
+}
+</script>
+</head>
+
+<body>
+<!-- <form action="/signup" method="POST">
+<label for="username">Username</label>
+<input type="text" name="username" />
+<label for="email">Email address</label>
+<input type="text" name="email" />
+<label for="password">Password</label>
+<input type="password" name="password" />
+<label for="name">Name</label>
+<input type="text" name="name" />
+<label for="lastname">Last Name</label>
+<input type="text" name="lastname" />
+<input type="submit" value="Create user" />
+</form> -->
+<!--
+<form action="/signup" method="POST">
+<label for="firstname">First Name</label>
+<input type="text" name="firstname" />
+<label for="lastname">Last Name</label>
+<input type="text" name="lastname" />
+<label for="phone">Phone Number</label>
+<input type="text" name="phone" />
+<label for="nic">NIC</label>
+<input type="text" name="nic" />
+<label for="username">Username</label>
+<input type="text" name="username" />
+<label for="password">Password</label>
+<input type="password" name="password" />
+<label for="cinema">Cinema Hall</label>
+<select name="cinema">
+	{% for cinema in cinemas %}
+		<option value="{{ cinema.key.id }}">{{ cinema.name }}</option>
+	{% endfor %}
+</select>
+<label for="manager">Managerial Level</label>
+<input type="radio" name="manager" value="True">Manager  
+<input type="radio" name="manager" value="False">Cashier<br>
+<input type="hidden" name="admin" value="False">
+<input type="submit" value="Create user" />
+</form>
+-->
+<div class="framework" style="width:472px;">
+<form id="form" action="/signup" method="POST">
+
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td><label for="username" class="inp_lbl">Username</label><input name="username" type="text" class="txt_box" size="30" /></td>
+      <td><label for="password" class="inp_lbl">Password</label><input name="password" type="password" class="txt_box" size="30" /></td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>
+  
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td><label for="firstname" class="inp_lbl">Firstname</label><input name="firstname" type="text" size="30" class="txt_box" /></td>
+      <td><label for="lastname" class="inp_lbl">Lastname</label><input name="lastname" type="text" size="30" class="txt_box" /></td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>  
+  
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">  
+    <tr>
+      <td width="222">Access Level:
+        <span id="radio">
+          <input type="radio" id="radio1" name="manager" value="True" checked="checked" /><label for="radio1" class="inp_obj">MANAGER</label>
+          <input type="radio" id="radio2" name="manager" value="False" /><label for="radio2" class="inp_obj">CASHIER</label>
+		  <input type="hidden" name="admin" value="False">
+        </span>
+      </td>
+      <td width="220">
+        <div class="ui-widget">
+          <label>Cinema: </label>
+          <select id="combobox" class="inp_obj" name="cinema">
+            <option value="">Select one...</option>
+			{% for cinema in cinemas %}
+				<option value="{{ cinema.key.id }}">{{ cinema.name }}</option>
+			{% endfor %}
+          </select>
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>
+  
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+    <tr>
+      <td><input type="submit" onclick="formSubmit()" value="ADD USER" class="inp_obj" style="width:100%;"/></td>
+    </tr>
+  </table>
+ </form>
+  
+  <div class="ruler"></div>
+  
+  <div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in as <label class="active_txt">administrator</label></span>
+    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
+  </div>
+  
+  <div class="ruler"></div>
+  
+  <div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+</div>
+</body>

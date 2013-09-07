@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DDRS | Majestic Cineplex</title>
+<style>
+	td {
+		width:25%;
+		text-align:center;
+		font-family:Tahoma, Geneva, sans-serif;
+		font-size:11px;
+		background:rgba(255,255,255,0.9);
+		border:1px #999999 solid;
+	}
+	body {
+		background:url(./images/bg.jpg);
+		background-position:bottom;
+		margin:20px;
+		background-attachment:fixed;
+	}
+</style>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery.json-2.4.min.js"></script>
+<script>
+  var users=new Object();
+  var passes=new Object();
+
+jQuery(document).ready(function(){
+  var userList='{{users|safe}}';
+  var passList='{{passes|safe}}';
+  var hallList='{{hall_json|safe}}';
+  {% for hall in halls %}
+  users['{{hall}}']=jQuery.evalJSON(userList).{{hall}};
+  passes['{{hall}}']=jQuery.evalJSON(passList).{{hall}};
+  {%endfor%}
+  jQuery('#form').append('<input type="hidden" name="users" value=\''+userList+'\' />');
+  jQuery('#form').append('<input type="hidden" name="passes" value=\''+passList+'\' />');
+jQuery('#form').append('<input type="hidden" name="halls" value=\''+hallList+'\' />');
+
+});
+	function formSubmit(type){
+
+	  jQuery('#form').append('<input type="hidden" name="password" value=\''+passes[type]+'\' />');
+	  jQuery('#form').append('<input type="hidden" name="username" value=\''+users[type]+'\' />');
+	  
+	  jQuery('#form').submit();
+	}
+</script>
+</head>
+<body>
+<div style="text-align:center; width:1233px; height:130px; margin:0px auto; background:rgba(255,255,255,1);"><img src="./images/CT_Header.jpg" style="margin-top:15px;" /></div>
+<form id="form" action="{{baseUrl}}/login" method="post" target="_parent">
+<!-- THIS IS WHERE TO ADD LOCAL PATH -->
+<input type="hidden" name="local" value="file://localhost/C:/USER/documents/index.html"/>
+<!-- 					-->
+<table width="1200" border="0" cellspacing="5" cellpadding="5" style="background-color:rgba(255,255,153,1);" align="center">
+  <tr>
+    {% for hall in halls %}
+    <td style="font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:24px; letter-spacing:2px;text-transform:capitalize;">{{hall}}</td>
+    {%endfor%}
+  </tr>
+  <tr>
+   {% for hall in halls %}
+    <td style="height:330px; background-image:url(./images/switchboard/bg_{{hall}}.jpg);background-repeat:no-repeat;
+    font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:30px;font-weight:800; letter-spacing:3px;text-transform:capitalize;"></td>
+    {%endfor%}
+  </tr>
+  <tr>
+    {% for hall in halls %}
+    <td><input type="submit" name="btn_{{hall}}" id="btn_{{hall}}" value="{{hall}}" onclick="formSubmit('{{hall}}')" style="width:100%; padding:10px;" /></td>
+    {%endfor%}  
+  </tr>
+</table>
+</form>
+</body>
+</html>

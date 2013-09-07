@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DDRS | Sign In</title>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+<script>
+	$(function() {
+		$( "#signIn" ).button();
+	});
+	function formSubmit() {
+		document.getElementById("form").submit();
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="./css/smoothness/jquery-ui-1.10.3.custom.min.css"/>
+<link rel="stylesheet" type="text/css" href="./fontkits/Droid-Sans/DroidSans.css"/>
+<style type="text/css">
+	body {
+		margin-left:85px;
+		margin-right:90px;
+		margin-top:200px;
+		margin-bottom:20px;
+	}
+	.btnSignIn {
+		width:110px;
+		height:35px;
+		margin:5px;
+	}
+	.textBox {
+		background: white;
+		border: 1px solid #DDD;
+		border-radius: 5px;
+		box-shadow: 0 0 5px #DDD inset;
+		color: #666;
+		outline: none;
+	}
+</style>
+</head>
+
+<body>
+<div class="headline" style="width:950px; margin:0px auto;">
+  <p class="header">Majestic Cineplex</p>
+  <p class="tagline" style="top:20px;">A CEYLON THEATRES CINEMA</p>
+  <img src="images/MajesticCineplex_logo.png" height="90" class="logo" />
+</div>
+<form class="form" action= "/login" method="post" id="form">
+  <div class="showInfo" style="width:950px; margin:0px auto; margin-top:30px; height:80px;">
+    <p style="float:left; margin-left:0px; margin-top:25px;">Username: </p><input class="textBox" type="text" name="username" style="margin-top:13px; padding:10px; margin-left:10px; float:left;" />
+    <p style="float:left; margin-left:40px; margin-top:25px;">Password: </p><input class="textBox" type="password" name="password" style="margin-top:13px; padding:10px; margin-left:10px; float:left;" />
+    <input id="signIn" name="signIn" type="submit" value="Sign In" class="btnSignIn" onclick="submitForm()" style="float:left; margin-left:50px; margin-top:16px;" />
+    <p style="float:left; margin-left:60px; margin-top:25px; cursor:pointer; color:rgba(102,102,102,1);" onclick="window.location.href='/forgot'">Forgot Password ?</p>
+  </div>
+</form>
+{% if failed %}
+<div class="ui-state-error ui-corner-all" style="height:35px; width:975px; margin:0px auto; margin-top:10px;">
+  <p style="margin-top:10px; margin-left:25px; font-size:12px;"><span class="ui-icon ui-icon-alert" style="float:left; margin-right:5px;"></span>
+  <strong>Login failed!</strong> Check your credentials and try again.</p>
+</div>
+{% endif %}
+</body>
+</html>

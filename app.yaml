@@ -1,0 +1,52 @@
+application: ceylontheatresplatform
+
+version: 16a
+runtime: python27
+api_version: 1
+threadsafe: true
+
+builtins:
+- remote_api: on
+
+handlers:
+- url: /jars
+  static_dir: views/jars
+
+- url: /styles
+  static_dir: views/styles
+  
+- url: /js
+  static_dir: views/js
+  
+- url: /css
+  static_dir: views/css
+  
+- url: /images
+  static_dir: views/images
+  
+- url: /fontkits
+  static_dir: views/fontkits
+
+- url: /.*
+  script: main.app
+
+- url: /signup
+  script: main.app
+  secure: always
+
+- url: /login
+  script: main.app
+  secure: always
+
+- url: /forgot
+  script: main.app
+  secure: always
+
+libraries:
+- name: jinja2
+  version: latest
+  
+- name: webapp2
+  version: latest
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DDRS | Dashboard</title>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script>
+	$(function() {
+// 		$( "#dataEntry" ).button();
+		$( "#publicSale" ).button();
+		$( "#serviceSale" ).button();
+		$( "#complimentarySale" ).button();
+		$( "#majesticCineplex" ).button();
+		$( "#platinumCinema" ).button();
+		$( "#viewDR" ).button();
+		$( "#signOut" ).button();
+	});
+	$(document).ready(function () {
+		$('#datePicker').val(new Date().toJSON().substring(0,10));
+	});
+	function formSubmit(){
+		document.getElementById("form").submit();
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="./css/smoothness/jquery-ui-1.10.3.custom.min.css"/>
+<link rel="stylesheet" type="text/css" href="./fontkits/Droid-Sans/DroidSans.css"/>
+<style type="text/css">
+	body {
+		margin-left:85px;
+		margin-right:90px;
+		margin-top:125px;
+		margin-bottom:20px;
+	}
+	.btnSeatplan {
+		width:150px;
+		height:35px;
+	}
+	.btnSale {
+		width:210px;
+		height:35px;
+		margin:5px;
+	}
+</style>
+</head>
+
+<body>
+<div class="headline" style="width:950px; margin:0px auto;">
+  <p class="header">Majestic Cineplex</p>
+  <p class="tagline" style="top:20px;">A CEYLON THEATRES CINEMA</p>
+  <img src="images/MajesticCineplex_logo.png" height="90" class="logo" />
+</div>
+<div class="movieStrip" style="width:950px; margin:0px auto; margin-bottom:20px; height:80px; margin-top:20px;">
+  <table border="0" cellspacing="10" cellpadding="10" width="240" style="position:relative; left:-3px;">
+    <tr>
+<!--       <td><input id="dataEntry" name="dataEntry" type="button" value="Data Entry" class="btnSale" onclick="window.location.href='/tickets'" /></td> -->
+      <td><input id="publicSale" name="publicSale" type="button" value="Public Tickets" class="btnSale" onclick="window.location.href='/seatplan'" /></td>
+      <td><input id="serviceSale" name="serviceSale" type="button" value="Service Tickets" class="btnSale" onclick="window.location.href='/seatplan?view=service'" /></td>
+      <td><input id="complimentarySale" name="complimentarySale" type="submit" value="Complimentary Tickets" class="btnSale" onclick="window.location.href='/seatplan?view=complimentary'" /></td>
+    </tr>
+  </table>
+</div>
+<form id="form" action="/dailyreport" method="GET">
+  <div class="showInfo" style="width:950px; margin:0px auto; margin-bottom:30px; height:80px;">
+    <input id="majesticCineplex" name="majesticCineplex" type="button" value="Majestic Cineplex" class="btnSale" style="float:left; margin-left:10px; margin-top:13px;" onclick="window.location.href='/switchboard'" />
+    <p style="float:left; margin-left:160px; margin-top:23px;">Please select a date: </p>
+    <input type="date" id="datePicker" name="report_date" style="position:relative; left:10px; top:18px;" />
+    <input id="viewDR" name="viewDR" type="button" value="View Daily Report" class="btnSale" onclick="formSubmit()" style="float:right; margin-right:40px; margin-top:13px;" />
+  </div>
+</form>
+<div class="btnBlock" style="width:980px; margin:0px auto; margin-bottom:10px;">
+	<p style="float:left; font-size:12px; color:#666666; font-family:Verdana, Geneva, sans-serif; left:305px; top:15px; position:relative; text-align:right; width:400px;">Signed in as {{ user.first_name }} {{ user.last_name }}</p>
+  <input id="signOut" name="signOut" type="submit" onclick="window.location.href='/logout'" value="Sign Out" class="btnSale" style="float:right; right:40px;" />
+</div>
+</body>
+</html>

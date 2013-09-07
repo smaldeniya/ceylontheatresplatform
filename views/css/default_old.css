@@ -1,0 +1,117 @@
+/* CSS Document */
+body {
+	margin:0px;
+	background-attachment:fixed;
+	background-image:url(../images/bg_02.jpg);
+	background-position:bottom;
+}
+input {
+	outline:none;
+}
+input.txt_box {
+	display:block;
+}
+.inp_lbl {
+	margin-left:15px;
+}
+div.framework {
+	position:relative;
+	padding:10px;
+	overflow:auto;
+	background:rgba(204,204,204,1);
+	border:rgba(255,255,255,1) dotted 1px;
+	margin:20px;
+	-moz-box-shadow: 5px 5px 250px #000000;
+	-webkit-box-shadow: 5px 5px 250px #000000;
+	box-shadow: 5px 5px 250px #000000;
+}
+table {
+	position:relative;
+	background:#FFCC33;
+}
+input.tkt_count_spinner, input.tkt_price_spinner {
+	font-weight:bold;
+	font-family:'Courier New', Courier, monospace;
+	text-align:right;
+}
+td {
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	background:rgba(255,255,255,0.9);
+	border:1px #999999 solid;
+}
+td.tkt_cat {
+	text-transform:uppercase;
+	text-align:center;
+	letter-spacing:1px;
+	color:rgba(255,204,0,1);
+	background:rgba(102,102,102,1);
+}
+td.tkt_sub_cat {
+	text-transform:uppercase;
+	text-align:center;
+	letter-spacing:1px;
+	color:rgba(51,51,51,1);
+	background:rgba(204,204,204,1);
+}
+label.active_txt {
+	color:rgba(51,51,51,1);
+}
+.inp_obj {
+	font-size:11px;
+	font-weight:normal;
+	text-transform:uppercase;
+	letter-spacing:1px;
+}
+div.ruler {
+	border-top:dotted 1px #333333;
+	width:inherit;
+	position:relative;
+	float:left;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+td.tkt_num {
+	text-align:right;
+	font-weight:bold;
+	font-family:'Courier New', Courier, monospace;
+}
+div.footer {
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	color:rgba(0,0,0,1);
+	width:inherit;
+}
+div.footer label.active_txt {
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	color:rgba(51,51,51,1);
+}
+.ui-combobox {
+	position: relative;
+	display: inline-block;
+	font-size:11px;
+}
+.ui-combobox-toggle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin-left: -1px;
+	padding: 0;
+	height:23px;
+	/* support: IE7 */
+	*height: 1.8em;
+	*top: 0.1em;
+}
+.ui-combobox-input {
+	margin: 0;
+	padding: 0.3em;
+}
+.ui-widget label {
+	font-weight:normal;
+	font-size:11px;
+	font-family:Tahoma, Geneva, sans-serif;
+}
+div.ui-datepicker, .ui-datepicker td{
+	font-size:10px;
+}

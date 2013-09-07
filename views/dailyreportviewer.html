@@ -1,0 +1,618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DDRS | DailyReportViewer</title>
+<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+<link rel="stylesheet" type="text/css" href="./css/default.css"/>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script>
+	function formSubmit(){
+		document.getElementById("comment").submit();
+	}
+	function formSubmit1(){
+		document.getElementById("comment1").submit();
+	}
+	function formSubmit2(){
+		document.getElementById("comment2").submit();
+	}
+	function formSubmit3(){
+		document.getElementById("comment3").submit();
+	}
+</script>
+<style>
+	body {
+		margin:0px;
+		background-image:none;
+		background:rgba(204,204,204,1);
+	}
+	table {
+		position:relative;
+		background:#33FFFF;
+	}
+	td {
+		font-family:"Arial Black", Gadget, sans-serif;
+		font-size:11px;
+		background:rgba(255,255,255,1);
+		border:1px #999999 solid;
+	}
+	div.framework {
+		position:relative;
+		padding:10px;
+		overflow:auto;
+		background:rgba(204,204,204,1);
+		border:none;
+		margin:0px;
+		-moz-box-shadow:none;
+		-webkit-box-shadow:none;
+		box-shadow:none;
+	}
+	table.guide td.tkt_cat {
+		font-family:Tahoma, Geneva, sans-serif;
+		text-transform:uppercase;
+		text-align:center;
+		letter-spacing:1px;
+		color:rgba(255,255,255,1);
+		background:#000000;
+		font-weight:normal;
+	}
+	table.guide td.tkt_cat {
+		font-family:Tahoma, Geneva, sans-serif;
+		text-transform:uppercase;
+		text-align:center;
+		letter-spacing:1px;
+		color:rgba(255,255,255,1);
+		background:#000000;
+		font-weight:normal;
+	}
+</style>
+</head>
+
+<body>
+
+<div class="framework" style="width:1315px;">
+
+  <table border="0" cellpadding="5" cellspacing="5" style="width:100%; height:100px;">
+  	<tr>
+      <td><img src="images/banner.jpg" /></td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>
+
+  <table border="0" cellpadding="5" cellspacing="5" style="width:100%;">
+    <tr>
+      <td width="204">Cinema: <label class="active_txt">{{ cinema.name }}</label></td>
+      <td width="188">Code: {{ cinema.code_no }} </td>
+      <td width="234">Film: {{ film.name }} </td>
+      <td width="257">Distributor: {{ cinema.distributor }}</td>
+      <td width="106">Day: {{ day_no }}</td>
+      <td width="251"><label class="active_txt"> {{ day }} {{ date }} </label></td>
+    </tr>
+    <tr>
+      <td>Place: <label class="active_txt"> {{ cinema.place }}</label></td>
+      <td>Grade: {{ cinema.grade }}</td>
+      <td>Copy: {{ reel.reel_no }}</td>
+      <td>Circuit: Circuit</td>
+      <td>Run: O/R </td>
+      <td width="251">Weather: {{ weather }}</td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>
+
+  <table border="0" cellspacing="1" cellpadding="2" style="float:left;" class="guide">
+    <tr>
+      <td colspan="2" rowspan="2" class="tkt_cat">Ticket<br />Category</td>
+      <td colspan="2" class="subTitle">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="subTitle">TOTAL SEATS</td>
+      <td class="subTitle">RATE</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tkt_cat">Box</td>
+      <td width="35">{{seats.box}}</td>
+      <td width="45">{{tariff.0.rate}}</td>
+    </tr>
+    <tr>
+      <td rowspan="3" width="30" class="tkt_cat">BDC</td>
+      <td width="35" class="tkt_sub_cat">Full</td>
+      <td rowspan="3">{{seats.balcony}}</td>
+      <td>{{tariff.1.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td>{{tariff.2.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td>{{tariff.3.rate}}</td>
+    </tr>
+    <tr>
+      <td rowspan="3" class="tkt_cat">ODC</td>
+      <td class="tkt_sub_cat">Full</td>
+      <td rowspan="3">{{seats.odc}}</td>
+      <td>{{tariff.4.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td>{{tariff.5.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td>{{tariff.6.rate}}</td>
+    </tr>
+    <tr>
+      <td rowspan="3" class="tkt_cat">First<br />Class</td>
+      <td class="tkt_sub_cat">Full</td>
+      <td rowspan="3">{{seats.firstclass}}</td>
+      <td>{{tariff.7.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td>{{tariff.8.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td>{{tariff.9.rate}}</td>
+    </tr>
+  </table>
+  
+    {% for dict in show %}
+	  {% if dict %}
+    
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left; {{ dict.0.colour }}">
+    <tr>
+      <td colspan="2" class="subTitle">{{ dict.0.show_name }}</td>
+      <td colspan="2" class="subTitle">{{ dict.0.show_time }}</td>
+    </tr>
+    <tr>
+      <td class="subTitle">OPENING<BR />NUMBER</td>
+      <td class="subTitle">CLOSING<BR />NUMBER</td>
+      <td class="subTitle">NO<BR />SOLD</td>
+      <td class="subTitle">AMOUNT</td>
+    </tr>
+	  {% for key,value in dict.items %}
+    <tr>
+      <td width="50">{{ value.opening_number }}</td>
+      <td width="50">{{ value.show_record_id }}</td> <!-- show_record_id is a replacement for closing number -->
+      <td width="30">{{ value.sales }}</td>
+      <td width="60">{{ value.rs }}</td>
+    </tr>
+	  {% endfor %}
+  </table>
+	{% endif %}
+	{% endfor %}
+    
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td colspan="2" class="subTitle">DAILY COLLECTION</td>
+      <td colspan="2" class="subTitle">ENT. TAX</td>
+    </tr>
+    <tr>
+      <td class="subTitle">NO<BR />SOLD</td>
+      <td class="subTitle">AMOUNT</td>
+      <td class="subTitle" height="24">RATE</td>
+      <td class="subTitle">AMOUNT</td>
+    </tr>
+	  {% for key, value in TOTAL.items %}
+    <tr>
+      <td width="30">{{ value.0 }}</td>
+      <td width="60">{{ value.1 }}</td>
+      <td width="30">{{ value.2 }}</td>
+      <td width="60">{{ value.3 }}</td>
+    </tr>
+	  {% endfor %}
+  </table>
+  
+  <div class="ruler"></div>
+    
+  <table border="0" cellspacing="1" cellpadding="2" style="float:left;" class="guide">
+    <tr>
+      <td width="106" class="tkt_cat">standard sale</td>
+      <td width="104" class="tkt_sub_cat" height="14">total</td>
+    </tr>
+  </table>
+	{% for dict in show %}
+	{% if dict %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;  {{ dict.0.colour }}">
+    <tr>
+      <td width="50" class="tkt_sub_cat">&nbsp;</td>
+      <td width="50" class="tkt_sub_cat">&nbsp;</td>
+      <td width="30">{{ dict.9.total_sales }}</td>
+      <td width="60">{{ dict.9.total_revenue }}</td>
+    </tr>
+  </table>
+	{% endif %}
+	{% endfor %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td width="30">{{ TOTS.0 }}</td>
+      <td width="60">{{ TOTS.1 }}</td>
+      <td width="35" class="tkt_sub_cat"></td>
+      <td width="60">{{ TOTS.3 }}</td>
+    </tr>
+  </table>
+    
+  <div class="ruler"></div>
+	
+	<!-- Insert Late Sales Here!! -->
+	
+	<table border="0" cellspacing="1" cellpadding="2" style="float:left;" class="guide">
+    <tr>
+      <td colspan="2" rowspan="2" class="tkt_cat">Ticket<br />Category</td>
+      <td colspan="2" class="subTitle">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="subTitle">TOTAL SEATS</td>
+      <td class="subTitle">RATE</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="tkt_cat">Box</td>
+      <td width="35">{{seats.box}}</td>
+      <td width="45">{{tariff.0.rate}}</td>
+    </tr>
+    <tr>
+      <td rowspan="3" width="30" class="tkt_cat">BDC</td>
+      <td width="35" class="tkt_sub_cat">Full</td>
+      <td rowspan="3">{{seats.balcony}}</td>
+      <td>{{tariff.1.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td>{{tariff.2.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td>{{tariff.3.rate}}</td>
+    </tr>
+    <tr>
+      <td rowspan="3" class="tkt_cat">ODC</td>
+      <td class="tkt_sub_cat">Full</td>
+      <td rowspan="3">{{seats.odc}}</td>
+      <td>{{tariff.4.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td>{{tariff.5.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td>{{tariff.6.rate}}</td>
+    </tr>
+    <tr>
+      <td rowspan="3" class="tkt_cat">First<br />Class</td>
+      <td class="tkt_sub_cat">Full</td>
+      <td rowspan="3">{{seats.firstclass}}</td>
+      <td>{{tariff.7.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Half</td>
+      <td>{{tariff.8.rate}}</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat">Service</td>
+      <td>{{tariff.9.rate}}</td>
+    </tr>
+  </table>
+  {% for dict in show2 %}
+	{% if dict %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;  {{ dict.0.colour }}">
+    <tr>
+      <td colspan="2" class="subTitle">{{ dict.0.show_name }}</td>
+      <td colspan="2" class="subTitle">{{ dict.0.show_time }}</td>
+    </tr>
+    <tr>
+      <td class="subTitle">OPENING<BR />NUMBER</td>
+      <td class="subTitle">CLOSING<BR />NUMBER</td>
+      <td class="subTitle">NO<BR />SOLD</td>
+      <td class="subTitle">AMOUNT</td>
+    </tr>
+    {% for key,value in dict.items %}
+    <tr>
+      <td width="50">{{ value.opening_number }}</td>
+      <td width="50">{{ value.show_record_id }}</td> <!-- show_record_id is a replacement for closing number -->
+      <td width="30">{{ value.sales }}</td>
+      <td width="60">{{ value.rs }}</td>
+    </tr>
+	{% endfor %}
+  </table>
+	{% endif %}
+	{% endfor %}
+    
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td colspan="2" class="subTitle">DAILY COLLECTION</td>
+      <td colspan="2" class="subTitle">ENT. TAX</td>
+    </tr>
+    <tr>
+      <td class="subTitle">NO<BR />SOLD</td>
+      <td class="subTitle">AMOUNT</td>
+      <td class="subTitle" height="24">RATE</td>
+      <td class="subTitle">AMOUNT</td>
+    </tr>
+	{% for key, value in TOTAL2.items %}
+    <tr>
+      <td width="30">{{ value.0 }}</td>
+      <td width="60">{{ value.1 }}</td>
+      <td width="30">{{ value.2 }}</td>
+      <td width="60">{{ value.3 }}</td>
+    </tr>
+	{% endfor %}
+  </table>
+  
+  <div class="ruler"></div>
+    
+  <table border="0" cellspacing="1" cellpadding="2" style="float:left;" class="guide">
+    <tr>
+      <td width="107" class="tkt_cat">late sale</td>
+      <td width="103" class="tkt_sub_cat" height="14">total</td>
+    </tr>
+  </table>
+	{% for dict in show2 %}
+	{% if dict %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;  {{ dict.0.colour }}">
+    <tr>
+      <td width="50" class="tkt_sub_cat">&nbsp;</td>
+      <td width="50" class="tkt_sub_cat">&nbsp;</td>
+      <td width="30">{{ dict.9.total_sales }}</td>
+      <td width="60">{{ dict.9.total_revenue }}</td>
+    </tr>
+  </table>
+	{% endif %}
+	{% endfor %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td width="30">{{ TOTS2.0 }}</td>
+      <td width="60">{{ TOTS2.1 }}</td>
+      <td width="35" class="tkt_sub_cat"></td>
+      <td width="60">{{ TOTS2.3 }}</td>
+    </tr>
+  </table>
+    
+  <div class="ruler"></div>
+	
+	<!-- Late Sales End Here!! -->
+	
+  <table border="0" cellspacing="1" cellpadding="2" style="float:left;" class="guide">
+    <tr>
+      <td width="107" rowspan="3" class="tkt_cat">Complimentary</td>
+      <td width="102" class="tkt_sub_cat" height="14">Balcony</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat" height="14">ODC</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat" height="14">first Class</td>
+    </tr>
+    <tr>
+      <td width="107" rowspan="3" class="tkt_cat">Complimentary<br />(Late)</td>
+      <td width="102" class="tkt_sub_cat" height="14">Balcony</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat" height="14">ODC</td>
+    </tr>
+    <tr>
+      <td class="tkt_sub_cat" height="14">first Class</td>
+    </tr>
+  </table>
+	{% for dict in show3 %}
+	{% if dict %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left; {{ dict.0.colour }}">
+    {% for key,value in dict.items %}
+    <tr>
+      <td width="50">{{value.opening_number}}</td>
+      <td width="50">{{value.show_record_id}}</td>
+      <td width="30">{{value.sales}}</td>
+      <td width="60" class="tkt_sub_cat">&nbsp;</td>
+    </tr>
+    {% endfor %}
+  </table>
+	{% endif %}
+	{% endfor %}
+        
+  <div class="ruler"></div>
+    
+  <table border="0" cellspacing="1" cellpadding="2" style="float:left;" class="guide">
+    <tr>
+      <td width="107" class="tkt_cat">gross</td>
+      <td width="103" class="tkt_sub_cat" height="14">total</td>
+    </tr>
+    </table>
+	{% for dict in FINALS %}
+	{% if dict %}
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td width="50" class="tkt_sub_cat"></td>
+      <td width="50" class="tkt_sub_cat"></td>
+      <td width="30">{{dict.P}}</td>
+      <td width="60">{{dict.R}}</td>
+      </tr>
+    </table>
+	{% endif %}
+	{% endfor %}
+    
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td width="30">{{PAT_TD}}</td>
+      <td width="60">{{ GRAND.R }}</td>
+    </tr>
+  </table>
+  
+  <table border="0" cellspacing="1" cellpadding="2" class="show" style="float:left;">
+    <tr>
+      <td width="34" class="tkt_sub_cat"></td>
+      <td width="60">{{ GRAND.T }}</td>
+    </tr>
+  </table>
+    
+    <div class="ruler"></div>
+    <br /><br /><br /><br />
+  <table width="100%" border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <td width="10%">Remarks</td>
+      <td width="22.5%" height="25" style="font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:11px;">Show 1 : {{ showrecord.0.remarks }}&nbsp;</td>
+      <td width="22.5%" height="25" style="font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:11px;">Show 2 : {{ showrecord.1.remarks }}&nbsp;</td>
+      <td width="22.5%" height="25" style="font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:11px;">Show 3 : {{ showrecord.2.remarks }}&nbsp;</td>
+      <td width="22.5%" height="25" style="font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:11px;">Show 4 : {{ showrecord.3.remarks }}&nbsp;</td>
+    </tr>
+  </table>
+  
+  <div class="ruler"></div>
+  
+  <table width="100%" border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <td>Total  Patrons (per month)</td>
+      <td width="30">{{ FINGRAND_P_M }}</td>
+      <td>Total  Patrons (per film)</td>
+      <td width="30">{{ GRAND.P|add:BFGRAND_P }}</td>
+      <td>Total  Shows (per month)</td>
+      <td width="30">{{ FINTOTAL_SHOWS_M }}</td>
+      <td>Total  Shows (per film)</td>
+      <td width="30">{{ TOTAL_SHOWS|add:BFTOTAL_SHOWS }}</td>
+    </tr>
+  </table>
+
+  <div class="ruler"></div>
+  
+  <table border="0" cellspacing="2" cellpadding="4" style="float:none; background-color:#CC0000;">
+    <tr>
+      <td width="30" rowspan="2" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">&nbsp;</td>
+      <td width="80" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">Miscellaneous</td>
+      <td colspan="3" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">share</td>
+      <td colspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">Miscellaneous</td>
+      <td width="30" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">&nbsp;</td>
+      <td width="70" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);"><span class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">Share</span></td>
+      <td width="70" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);"><span class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">film collection</span></td>
+      <td width="70" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);"><span class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">monthly collection</span></td>
+      <td width="70" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);"><span class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">monthly remittances</span></td>
+      <td width="70" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);"><span class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">Total shows</span></td>
+      <td width="70" rowspan="2" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);"><span class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">total patrons</span></td>
+      <td width="200" rowspan="5" align="center"><input type="button" name="button" id="button" value="Print Report" class="inp_obj" onclick="window.print()" /></td>
+    </tr>
+    <tr>
+      <td width="70" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">Cinema</td>
+      <td width="70" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">NFC</td>
+      <td width="70" class="tkt_sub_cat" style="background-color:rgba(102,102,102,1); color:rgba(255,255,255,1);">Ent. tax</td>
+      <td width="70">Tickets Sold</td>
+      <td width="70" class="tkt_num">{{ PAT_TD }}</td>
+    </tr>
+    <tr>
+      <td>B/Fc</td>
+      <td class="tkt_num">{{ BFLEAVY }}</td>
+      <td class="tkt_num">{{ BFTHEATRE }}</td>
+      <td class="tkt_num">{{ BFNFC }}</td>
+      <td class="tkt_num">{{ BFGRAND_T }}</td>
+      <td>Theatre</td>
+      <td class="tkt_num">{{ THEATRE }}</td>
+      <td>B/Fc</td>
+      <td class="tkt_num">{{ BFSHARE }}</td>
+      <td class="tkt_num">{{ BFGRAND_R }}</td>
+      <td class="tkt_num">{{ BFGRAND_R_M }}</td>
+      <td class="tkt_num">&nbsp;</td>
+      <td class="tkt_num">{{ BFTOTAL_SHOWS }}</td>
+      <td class="tkt_num">{{ PAT_BF }}</td>
+    </tr>
+    <tr>
+      <td>Today</td>
+      <td class="tkt_num">{{ LEAVY }}</td>
+      <td class="tkt_num">{{ THEATRE }}</td>
+      <td class="tkt_num">{{ NFC }}</td>
+      <td class="tkt_num">{{ GRAND.T }}</td>
+      <td>NFC</td>
+      <td class="tkt_num">{{ NFC }}</td>
+      <td>Today</td>
+      <td class="tkt_num">{{ SHARE }}</td>
+      <td class="tkt_num">{{ GRAND.R }}</td>
+      <td class="tkt_num">{{ GRAND.R }}</td>
+      <td class="tkt_num">&nbsp;</td>
+      <td class="tkt_num">{{ TOTAL_SHOWS }}</td>
+      <td class="tkt_num">{{ PAT_TD }}</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td class="tkt_num">{{ FINLEAVY }}</td>
+      <td class="tkt_num">{{ FINTHEATRE }}</td>
+      <td class="tkt_num">{{ FINNFC }}</td>
+      <td class="tkt_num">{{ FINGRAND_T }}</td>
+      <td>Total</td>
+      <td class="tkt_num">{{ LEAVY }}</td>
+      <td>Total</td>
+      <td class="tkt_num">{{ FINSHARE }}</td>
+      <td class="tkt_num">{{ FINGRAND_R }}</td>
+      <td class="tkt_num">{{ FINGRAND_R_M }}</td>
+      <td class="tkt_num">&nbsp;</td>
+      <td class="tkt_num">{{ TOTAL_SHOWS|add:BFTOTAL_SHOWS }}</td>
+      <td class="tkt_num">{{ PAT_TD|add:PAT_BF }}</td>
+    </tr>
+  </table>
+
+  <div class="ruler"></div>
+
+  <table border="0" cellpadding="5" cellspacing="5" style="width:100%; height:50px;">
+    <tr>
+      {% if no_comment %}
+      <form action="/dailyreport" method="POST" id="comment">
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment"></textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit()" /></td> 
+      </form>
+      {% else %}
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment" disabled="disabled">{{ comment }}</textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit()" disabled="disabled" /></td> 
+      {% endif %}
+      
+      {% if no_comment1 %}
+      <form action="/dailyreport" method="POST" id="comment1">
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment1"></textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit1()" /></td> 
+      </form>
+      {% else %}
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment" disabled="disabled">{{ comment1 }}</textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit()" disabled="disabled" /></td>
+      {% endif %}
+    </tr>
+    <tr>
+      {% if no_comment2 %}  
+      <form action="/dailyreport" method="POST" id="comment2">
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment2"></textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit2()" /></td> 
+      </form>
+      {% else %}
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment" disabled="disabled">{{ comment2 }}</textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit()" disabled="disabled" /></td>
+      {% endif %}
+      {% if no_comment3 %} 
+      <form action="/dailyreport" method="POST" id="comment3">
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment3"></textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit3()" /></td> 
+      </form>
+      {% else %}
+      <td style="width:500px;"><textarea style="width:500px; height:100%; resize:none;" name="comment" disabled="disabled">{{ comment3 }}</textarea></td>
+        <input type="hidden" name="report_date" value="{{ report_date }}" />
+      <td><input name="" type="button" value="Save Comments" style="width:100%;" onclick="formSubmit()" disabled="disabled" /></td>
+      {% endif %}
+    </tr>
+  </table>
+
+	<div class="ruler"></div>
+  
+	<div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label><label class="active_txt"></label></span>
+    <span style="float:right;"><a href="/">dashboard</a> | <a href="/logout">logout</a></span>
+	</div>
+  
+</div>
+
+</body>
+</html>

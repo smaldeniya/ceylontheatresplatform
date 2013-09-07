@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DigitalDailyReport | User: Add Film</title>
+<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+<link rel="stylesheet" type="text/css" href="./css/default.css"/>
+<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.10.1.custom.js"></script>
+<script>
+  $(function() {
+    $( "#radio" ).buttonset();
+		$( "input.tkt_count_spinner" ).spinner();
+		$(function() {
+			$( "input[type=button]" ).button().click(function( event ) {
+					event.preventDefault();
+      });
+		});
+  });
+</script>
+<style>
+input.txt_box {
+	display:block;
+	outline:none;
+}
+.inp_lbl {
+	margin-left:15px;
+}
+</style>
+</head>
+
+<body>
+<div style="position:relative; padding:5px; width:389px; overflow:auto; background:rgba(204,204,204,1); border:rgba(51,51,51,1) dotted 1px; margin-top:20px; margin-left:20px;">
+<table border="0" cellspacing="5" cellpadding="5" bgcolor="#FFCC33" style="position:relative;" width="389">
+<!--  <tr>
+    <td>
+      <label for="username" class="inp_lbl">Title</label><input name="username" type="text" class="txt_box" />
+    </td>
+  </tr>-->
+  <tr>
+    <td><input type="button" name="button" id="button" value="Add User" class="inp_obj" style="width:100%;" onclick="window.location.href='/signup'" /></td>
+  </tr>
+  <tr>
+    <td><input type="button" name="button" id="button" value="Add Cinema Hall" class="inp_obj" style="width:100%;" onclick="window.location.href='/addhall'" /></td>
+  </tr>
+  <tr>
+    <td><input type="button" name="button" id="button" value="Add Film Copies" class="inp_obj" style="width:100%;"  onclick="window.location.href='/addcopies'" /></td>
+  </tr>
+  <tr>
+    <td><input type="button" name="button" id="button" value="Assign Film to Hall" class="inp_obj" style="width:100%;" onclick="window.location.href='/assign'" /></td>
+  </tr>
+<!--  <tr>
+    <td><input type="button" name="button" id="button" value="Add Film" class="inp_obj" style="width:100%;" /></td>
+  </tr>-->
+  <!--<tr>
+    
+  </tr>-->
+</table>
+<div class="ruler"></div>
+  <div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in as <label class="active_txt">administrator</label></span>
+    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
+  </div><div class="ruler"></div>
+<div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+</div>
+</body>
+</html>

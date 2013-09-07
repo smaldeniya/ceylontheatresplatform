@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DigitalDailyReport | User: Ticket Sale</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+<link rel="stylesheet" type="text/css" href="./css/default.css"/>
+
+<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+<form id="reprint_form" action="/seatplan" method="post">
+<input type="hidden" value="true" name="is_reprint"/>
+</form>
+<script type="text/javascript">
+	function printTickets(){
+		print();
+		jQuery( "#printConfirm" ).dialog({ buttons: [ { text: "Yes", click: function() {  window.location = "/seatplan";} },{text:"No", click:function(){jQuery('#reprint_form').submit();}} ] });
+
+		
+	}
+   $(document).ready(function () {
+		//alert("Ready");
+		//print();
+		//window.location = "/tickets"
+	});
+    function findPrinter() {
+         var applet = document.jzebra;
+         if (applet != null) {
+            // Searches for locally installed printer with "zebra" in the name
+            applet.findPrinter("EPSON");
+// 	    applet.findPrinter("HP");
+         }
+         
+         // *Note:  monitorFinding() still works but is too complicated and
+         // outdated.  Instead create a JavaScript  function called 
+         // "jzebraDoneFinding()" and handle your next steps there.
+         //monitorFinding();
+      }
+
+      function findPrinters() {
+         var applet = document.jzebra;
+         if (applet != null) {
+            // Searches for locally installed printer with "zebra" in the name
+            applet.findPrinter("\\{dummy printer name for listing\\}");
+         }
+
+         monitorFinding2();
+      }
+
+      function print() {
+		 findPrinter();
+         var applet = document.jzebra;
+         if (applet != null) {
+		 
+			var date = new Date();
+			var str_date = ""+date;
+			str_date = str_date.substring(0, 24);
+			//applet.append("New1\r\n");
+			applet.append("\x1B\x40"); // 1
+			
+			{% for key,value in ticketprint.items %}
+				applet.append("\r\n");
+				applet.append("\x1B\x21\x08"); // 2
+				applet.append(chr(27) + chr(69) + "\r");  // bold on
+				applet.append(chr(27) + "\x61" + "\x31"); // center justify
+				applet.append64("HShMBgAwRTAwAQE="); //print image : \x1D\x28\x4C\x06\x00\x30\x45\x30\x30\x01\x01
+				applet.append("\x1B\x21\x01"); //3 
+				applet.append(" _______________________________________________________ \r\n");
+				applet.append(chr(27) + "\x61" + "\x32"); // right justify
+				applet.append("Ticket No: {{ value.ticket_no }}\r\n");
+				applet.append(" \r\n");
+				applet.append("\x1B\x21\x08"); // 2
+				applet.append(chr(27) + "\x61" + "\x30"); // left justify
+				applet.append("  Cinema \x09: {{ value.cinema_hall }}\r\n");
+				applet.append("  Date \x09\x09: "+ str_date + "\r\n");
+				applet.append(" \r\n");
+				applet.append("  Show Time \x09: {{ value.show_time }}\r\n");
+				applet.append("  Show Title \x09: {{ value.film_name }}\r\n");
+				applet.append("  Catagory \x09: LUXURY\r\n");
+				applet.append("  Seat No \x09: {{value.seat_number}}\r\n");
+				applet.append("  Type \x09\x09: {{ value.ticket_type }}\r\n");
+				applet.append(" \r\n");
+				applet.append("\x1B\x21\x20"); //Double Width
+				applet.append(" Amount : {{ value.price }}\r\n");
+				applet.append("\x1B\x21\x01"); // 3
+				//applet.append("Inclusive of E/T and other charges\r\n");
+				applet.append(" \r\n");
+				applet.append(chr(27) + "\x61" + "\x30"); // left justify
+				applet.append("Inclusive of E/T and other charges.\r\n");
+				applet.append("This ticket's valid only for the show of issue.\r\nKindly retain your ticket until the end of show.\r\n");
+				applet.append("Tickets are not refundable once sold.\r\n");
+				applet.append("Damage / lost of the 3D glass will be fined LKR 6,000.00.\r\n");
+				applet.append("No outside food / beverage is allowed in the theatre premises.\r\n");
+				applet.append("Please have your parking ticket stamped for concessions from     parking fee.\r\n");
+				applet.append(" -------------------------------------------------- \r\n");
+				applet.append(" -------------------------------------------------- \r\n");
+				applet.append(" -------------------------------------------------- \r\n");
+				applet.append(chr(27) + "\x61" + "\x30"); // left justify
+				applet.append64("HShMBgAwRTAzAQE="); //print image2 : \x1D\x28\x4C\x06\x00\x30\x45\x30\x33\x01\x01
+				applet.append(chr(27) + "\x61" + "\x32"); // right justify
+				applet.append("Ticket No : {{ value.ticket_no }}\r\n");
+				applet.append(chr(27) + "\x61" + "\x30"); // left justify
+				applet.append("\x1B\x21\x08"); // 2
+				applet.append("  Cinema \x09: {{ value.cinema_hall }}\r\n");
+				applet.append("\x1B\x21\x01"); // 3
+				applet.append("   Date \x09\x09:  "+ str_date + "\r\n");
+				applet.append("   Show Time \x09:  {{ value.show_time }}\r\n");
+				applet.append("   Show Title \x09:  {{ value.film_name }}\r\n");
+				applet.append("   Show Type \x09:  {{ value.ticket_type }}\r\n");
+				applet.append("   Seat No \x09:  {{ value.film_name }}\r\n");
+				applet.append("   Amount \x09\x09:  {{ value.price }}0\r\n");
+				applet.append(chr(27) + "\x61" + "\x31"); // center justify
+				applet.append(" -------------------------------------------------- \r\n");
+				applet.append("\x1D\x56\x41"); // 4
+			{% endfor %}
+			applet.append("\x1B\x40"); // 5
+            // Send characters/raw commands to printer
+            applet.print();
+		}
+	 
+	 //monitorPrinting();
+         
+      }
+      
+      // Gets the current url's path, such as http://site.com/example/dist/
+      function getPath() {
+          var path = window.location.href;
+          return path.substring(0, path.lastIndexOf("/")) + "/";
+      }
+      
+      function chr(i) {
+         return String.fromCharCode(i);
+      }
+      
+      // *Note:  monitorPrinting() still works but is too complicated and
+      // outdated.  Instead create a JavaScript  function called 
+      // "jzebraDonePrinting()" and handle your next steps there.
+      function monitorPrinting() {
+	var applet = document.jzebra;
+	if (applet != null) {
+	   if (!applet.isDonePrinting()) {
+	      window.setTimeout('monitorPrinting()', 100);
+	   } else {
+	      var e = applet.getException();
+	      alert(e == null ? "Printed Successfully" : "Exception occured: " + e.getLocalizedMessage());
+	   }
+	} else {
+            alert("Applet not loaded!");
+        }
+      }
+      
+      function monitorFinding() {
+	var applet = document.jzebra;
+	if (applet != null) {
+	   if (!applet.isDoneFinding()) {
+	      window.setTimeout('monitorFinding()', 100);
+	   } else {
+	      var printer = applet.getPrinter();
+              alert(printer == null ? "Printer not found" : "Printer \"" + printer + "\" found");
+	   }
+	} else {
+            alert("Applet not loaded!");
+        }
+      }
+
+      function monitorFinding2() {
+	var applet = document.jzebra;
+	if (applet != null) {
+	   if (!applet.isDoneFinding()) {
+	      window.setTimeout('monitorFinding2()', 100);
+	   } else {
+              var printersCSV = applet.getPrinters();
+              var printers = printersCSV.split(",");
+              for (p in printers) {
+                  alert(printers[p]);
+              }
+              
+	   }
+	} else {
+            alert("Applet not loaded!");
+        }
+      }
+      
+      // *Note:  monitorAppending() still works but is too complicated and
+      // outdated.  Instead create a JavaScript  function called 
+      // "jzebraDoneAppending()" and handle your next steps there.
+      function monitorAppending() {
+	var applet = document.jzebra;
+	if (applet != null) {
+	   if (!applet.isDoneAppending()) {
+	      window.setTimeout('monitorAppending()', 100);
+	   } else {
+	      applet.print(); // Don't print until all of the data has been appended
+              
+              // *Note:  monitorPrinting() still works but is too complicated and
+              // outdated.  Instead create a JavaScript  function called 
+              // "jzebraDonePrinting()" and handle your next steps there.
+              monitorPrinting();
+	   }
+	} else {
+            alert("Applet not loaded!");
+        }
+      }
+
+      // *Note:  monitorAppending2() still works but is too complicated and
+      // outdated.  Instead create a JavaScript  function called 
+      // "jzebraDoneAppending()" and handle your next steps there.
+      function monitorAppending2() {
+	var applet = document.jzebra;
+	if (applet != null) {
+	   if (!applet.isDoneAppending()) {
+	      window.setTimeout('monitorAppending2()', 100);
+	   } else {
+	      applet.printPS(); // Don't print until all of the image data has been appended
+              
+              // *Note:  monitorPrinting() still works but is too complicated and
+              // outdated.  Instead create a JavaScript  function called 
+              // "jzebraDonePrinting()" and handle your next steps there.
+              monitorPrinting();
+	   }
+	} else {
+            alert("Applet not loaded!");
+        }
+      }
+      
+      // *Note:  monitorAppending3() still works but is too complicated and
+      // outdated.  Instead create a JavaScript  function called 
+      // "jzebraDoneAppending()" and handle your next steps there.
+      function monitorAppending3() {
+	var applet = document.jzebra;
+	if (applet != null) {
+	   if (!applet.isDoneAppending()) {
+	      window.setTimeout('monitorAppending3()', 100);
+	   } else {
+	      applet.printHTML(); // Don't print until all of the image data has been appended
+              
+              
+              // *Note:  monitorPrinting() still works but is too complicated and
+              // outdated.  Instead create a JavaScript  function called 
+              // "jzebraDonePrinting()" and handle your next steps there.
+              monitorPrinting();
+	   }
+	} else {
+            alert("Applet not loaded!");
+        }
+      }
+      
+      function useDefaultPrinter() {
+         var applet = document.jzebra;
+         if (applet != null) {
+            // Searches for default printer
+            applet.findPrinter();
+         }
+         
+         monitorFinding();
+      }
+      
+      function jzebraReady() {
+          
+      }
+      
+      /**
+       * By default, jZebra prevents multiple instances of the applet's main 
+       * JavaScript listener thread to start up.  This can cause problems if
+       * you have jZebra loaded on multiple pages at once. 
+       * 
+       * The downside to this is Internet Explorer has a tendency to initilize the
+       * applet multiple times, so use this setting with care.
+       */
+
+      function logFeatures() {
+          if (document.jzebra != null) {
+              var applet = document.jzebra;
+              var logging = applet.getLogPostScriptFeatures();
+              applet.setLogPostScriptFeatures(!logging);
+              alert('Logging of PostScript printer capabilities to console set to "' + !logging + '"');
+          }
+      }
+
+   </script>
+   <script>
+	function compute(){
+		//alert(parseFloat({{ total_price }}));
+		//alert(document.getElementById('amount').value);
+		var balance = parseFloat(document.getElementById('amount').value) - parseFloat( {{ total_price }} )
+		$("#balance").html( balance.toFixed(2));
+	}
+	$(document).ready(function () {
+		//alert("a");
+		//$("#ticketdetails").html("{{ticket_text}}");
+	});
+	</script>
+<!--    <script type="text/javascript" src="js/jquery-1.7.1.js"></script> -->
+   <script type="text/javascript" src="js/html2canvas.js"></script>
+   <script type="text/javascript" src="js/jquery.plugin.html2canvas.js"></script>
+   
+	<style>
+	input.txt_box {
+		display:block;
+		outline:none;
+	}
+	.inp_lbl {
+		margin-left:15px;
+	}
+	</style>
+   </head>
+   <body id="content">
+   <div id="printConfirm">Printing Success?</div>
+   <applet name="jzebra" code="jzebra.PrintApplet.class" archive="./jars/jzebra.jar" width="50px" height="50px">
+      <param name="printer" value="zebra" />
+   </applet><br />
+   <div style="position:relative; padding:5px; width:389px; overflow:auto; background:rgba(204,204,204,1); border:rgba(51,51,51,1) dotted 1px; margin:0px auto; margin-top:100px;">
+<table border="0" cellspacing="5" cellpadding="5" bgcolor="#FFCC33" style="position:relative;" width="389">
+<!--  <tr>
+    <td>
+      <label for="username" class="inp_lbl">Title</label><input name="username" type="text" class="txt_box" />
+    </td>
+  </tr>-->
+  <tr>
+    <td><div id="ticketdetails">
+	<ol>
+	{% for ticket in ticket_text %}
+		<ul> {{ ticket }} </ul>
+	{% endfor %}
+	<ul> Seat Numbers : 
+	{% for seat_number in seat_list %}
+		{{ seat_number }}  
+	{% endfor %}
+</ul>
+		</ol>
+		</div>
+	</td>
+  </tr>
+  <tr>
+        <td align="center"><span style="text-transform:uppercase; letter-spacing:2px; font-size:18px;">Amount Given</span><br /><input type="text" name="amount" id="amount" /></td>
+      </tr>
+      <tr>
+        <td align="center"><span style="text-transform:uppercase; letter-spacing:2px; font-size:18px;">Balance</span><br /><label id="balance" style="font-size:36px;"></label></td>
+      </tr>
+
+  <tr>
+    <td><input type="button" name="button" id="button" value="Show Balance" class="inp_obj" style="width:100%;"  onclick="compute()" /></td>
+  </tr>
+  <tr>
+    <td><input type="button" name="button" id="button" value="Print Tickets" class="inp_obj" style="width:100%;"  onclick="printTickets()" /></td>
+  </tr>
+<!--  <tr>
+    <td><input type="button" name="button" id="button" value="Add Film" class="inp_obj" style="width:100%;" /></td>
+  </tr>-->
+  <!--<tr>
+    
+  </tr>-->
+</table>
+<div class="ruler"></div>
+	<div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label><label class="active_txt"></label></span>
+    <span style="float:right;"><a href="/">dashboard</a> | <a href="/logout">logout</a></span>
+	</div>
+</div>
+</body>
+</html>

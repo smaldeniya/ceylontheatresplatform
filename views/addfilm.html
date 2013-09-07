@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DigitalDailyReport | User: Add Film</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+<link rel="stylesheet" type="text/css" href="./css/default.css"/>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+</head>
+<script>
+function formSubmit(){
+	document.getElementById("form").submit();
+}
+</script>
+<body>
+<div class="framework" style="width:390px;">
+<form id="form" action="/addfilm" method="POST">
+  <table border="0" cellspacing="5" cellpadding="5" style="width:100%">
+    <tr>
+      <td width="20">
+        <label for="title" class="inp_lbl">Title</label><input name="name" type="text" size="55" class="txt_box" id="title" />
+      </td>
+    </tr>
+    <tr>
+      <td><input type="button" name="button" id="button" value="ADD FILM TITLE" onclick="formSubmit()" class="inp_obj" style="width:100%;" /></td>
+    </tr>
+  </table>
+ </form> 
+
+  <div class="ruler"></div>
+  
+  <div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in as <label class="active_txt">administrator</label></span>
+    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
+  </div>
+  
+  <div class="ruler"></div>
+  
+  <div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+</div>
+</body>

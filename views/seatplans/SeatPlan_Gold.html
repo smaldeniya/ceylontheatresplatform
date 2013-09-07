@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DDRS | Majestic Cineplex - GOLD</title>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="./js/seatingArrangement.js"></script>
+<script>
+	var reservedList="{{seatListOutString}}";
+	var view="{{seat_view}}";
+	$(function() {
+		$( "#majesticCineplex" ).button();
+		$( "#goldCinema" ).button();
+		$( "#makeReservationTop" ).button();
+		$( "#makeReservationBottom" ).button();
+	});
+</script>
+<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="./css/smoothness/jquery-ui-1.10.3.custom.min.css"/>
+<link rel="stylesheet" type="text/css" href="./fontkits/Droid-Sans/DroidSans.css"/>
+</head>
+
+<body>
+<div class="headline">
+  <p class="header">Majestic Cineplex - GOLD</p>
+  <p class="tagline">A CEYLON THEATRES CINEMA</p>
+  <img src="images/MajesticCineplex_logo.png" height="90" class="logo" />
+</div>
+<div class="movieStrip" style="background:url(images/MC_Gold.jpg);"></div>
+<form action="/seatplan" method="post" id="form">
+<div class="showInfo">
+	<input type="hidden" name="show" value="{{ show }}" />
+  <input type="hidden" name="cinema_id" value="{{ cinema_id }}" />
+	<p class="title">Showtime: {{ showtimeview }}</p>
+  <p class="title">Movie: {{ film }}</p>
+  {% if seat_view == 'public' %}
+  <p class="title_halfCount">Half Tickets Count:</p>
+  <input name="odc_half" id="odc_half" type="number" min="0" value="0" class="spinner_halfCount" onchange="changeval()" />
+  {% endif %}
+  <p class="title">Total Tickets: <label id="totalCount">0</label>
+  {% if seat_view == 'public' %}&nbsp;= ( Full: <label id="fullCount">0</label> + Half: <label id="halfCount">0</label> ){% endif %}</p>
+  {% for seat_type in seat_types %}
+  <input type="hidden" id="inp_{{seat_type}}" name="{{seat_type}}" value="0"/>
+  {% endfor %}
+  <input id="makeReservationTop" name="makeReservationTop" type="submit" onclick="formSubmit()" value="Make Reservation" class="btnSeatplan makeReservationTop" />
+</div>
+<div class="screenBlock">SCREEN</div>
+<div class="seatingArrangement" align="center" style="height:235px;">
+  <div style="width:475px;">
+    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="float:left;">
+      <tr>
+        <td>E10</td>
+        <td>E9</td>
+        <td>E8</td>
+        <td>E7</td>
+        <td>E6</td>
+      </tr>
+      <tr>
+        <td>D10</td>
+        <td>D9</td>
+        <td>D8</td>
+        <td>D7</td>
+        <td>D6</td>
+      </tr>
+      <tr>
+        <td>C10</td>
+        <td>C9</td>
+        <td>C8</td>
+        <td>C7</td>
+        <td>C6</td>
+      </tr>
+      <tr>
+        <td>B10</td>
+        <td>B9</td>
+        <td>B8</td>
+        <td>B7</td>
+        <td>B6</td>
+      </tr>
+      <tr>
+        <td>A10</td>
+        <td>A9</td>
+        <td>A8</td>
+        <td>A7</td>
+        <td>A6</td>
+      </tr>
+    </table>
+    <table border="0" cellspacing="3" cellpadding="3" class="plan" style="margin-left:35px; float:left;">
+      <tr>
+        <td>E5</td>
+        <td>E4</td>
+        <td>E3</td>
+        <td>E2</td>
+        <td>E1</td>
+      </tr>
+      <tr>
+        <td>D5</td>
+        <td>D4</td>
+        <td>D3</td>
+        <td>D2</td>
+        <td>D1</td>
+      </tr>
+      <tr>
+        <td>C5</td>
+        <td>C4</td>
+        <td>C3</td>
+        <td>C2</td>
+        <td>C1</td>
+      </tr>
+      <tr>
+        <td>B5</td>
+        <td>B4</td>
+        <td>B3</td>
+        <td>B2</td>
+        <td>B1</td>
+      </tr>
+      <tr>
+        <td>A5</td>
+        <td>A4</td>
+        <td>A3</td>
+        <td>A2</td>
+        <td>A1</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="btnBlock">
+	<input id="majesticCineplex" name="majesticCineplex" type="button" value="Majestic Cineplex" class="btnSeatplan" style="float:left;" />
+	<input id="goldCinema" name="goldCinema" type="button" value="Gold Cinema" onclick="window.location.href='/'" class="btnSeatplan" />
+  <input id="makeReservationBottom" name="makeReservationBottom" type="submit" onclick="formSubmit()" value="Make Reservation" class="btnSeatplan" style="float:right;" />
+</div>
+</form>
+</body>
+</html>
