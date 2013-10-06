@@ -1,162 +1,172 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DigitalDailyReport | User: Add Film</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
-<link rel="stylesheet" type="text/css" href="./css/default.css"/>
-<script src="./js/jquery-1.9.1.js"></script>
-<script src="./js/jquery-ui-1.10.1.custom.js"></script>
-<script src="./js/custom.js"></script>
-<script>
-function formSubmit()
-{
-document.getElementById("form").submit();
-}
-$(document).ready(function() {
-   // put all your jQuery goodness in here.
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DigitalDailyReport | User: Add Film</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/default.css"/>
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-ui-1.10.1.custom.js"></script>
+    <script src="./js/custom.js"></script>
+    <script>
+        function formSubmit() {
+            document.getElementById("form").submit();
+        }
+        $(document).ready(function () {
+            // put all your jQuery goodness in here.
 
- $(function() {
-    $( "#datepicker_from" ).datepicker();
-	
-  });
-   
-   $('#movie_name').change(function() {
-   
-   var movie_id = $('#movie_name').val();
-   
-   //alert("boo");
- // alert('Handler for .change() called.');
-   $.ajax({
-        
-          url: "/assignquery",
-       //   data: "array="+JSON.stringify(tempArray)
-	   type: 'GET',
-	    data: {movie_id:movie_id},
+            $(function () {
+                $("#datepicker_from").datepicker();
 
-    dataType : 'json',
-    success: function (data){
-	
-	
-        //(data[1]);
-		
-		//var reels=["abc","def","xyz"];
-		
-		create_new_dropdown(data);
-    }
-	   
-       });
-	   
-	   
-	   function create_new_dropdown(reels){
-	   
-	   $('#div_reel').empty();
-	   
-	   //alert(reels[0]);
-	   
-	   $('#div_reel').append('Select Film Copy : <select id="movie_reel"  name="reel"> <option value="">Please Select..</option>');
-	   
-	   for(var i=0;i<reels.length/2;i++){
-	   
-	   $('#movie_reel').append('<option value='+reels[2*i+1]+'>'+reels[2*i]+'</option>');
-	   }
-	   
-	   $('#div_reel').append('</select>');
-	   }
-	   
-});  
-	//   }
-	   
- });
+            });
 
- 
-</script>
+            $('#movie_name').change(function () {
+
+                var movie_id = $('#movie_name').val();
+
+                //alert("boo");
+                // alert('Handler for .change() called.');
+                $.ajax({
+
+                    url: "/assignquery",
+                    //   data: "array="+JSON.stringify(tempArray)
+                    type: 'GET',
+                    data: {movie_id: movie_id},
+
+                    dataType: 'json',
+                    success: function (data) {
+
+
+                        //(data[1]);
+
+                        //var reels=["abc","def","xyz"];
+
+                        create_new_dropdown(data);
+                    }
+
+                });
+
+
+                function create_new_dropdown(reels) {
+
+                    $('#div_reel').empty();
+
+                    //alert(reels[0]);
+
+                    $('#div_reel').append('Select Film Copy : <select id="movie_reel"  name="reel"> <option value="">Please Select..</option>');
+
+                    for (var i = 0; i < reels.length / 2; i++) {
+
+                        $('#movie_reel').append('<option value=' + reels[2 * i + 1] + '>' + reels[2 * i] + '</option>');
+                    }
+
+                    $('#div_reel').append('</select>');
+                }
+
+            });
+            //   }
+
+        });
+
+
+    </script>
 
 </head>
 <body>
 <div class="framework" style="width:350px;">
-<!--
-		<form id="form" action="/assign" method="post">
-			Cinema Hall : <select name="cinema">
-					<option value="">Please Select..</option>
-				{% for cinema in cinemas %}
-					<option value="{{ cinema.key.id }}">{{ cinema.name }}</option>
-				{% endfor %}
-			</select><br>Movie : <select id="movie_name"  name="movie">
-				<option value="">Please Select..</option>
-				{% for film in films %}
-					<option value="{{ film.key.id }}">{{ film.name }}</option>
-				{% endfor %}
-				</select><br>
-				
-				<div id="div_reel">
-				
-				</div><br>
-			Start Date : <input type="date" name="start_date"><br>
-			End Date : <input type="date" name="end_date"><br>
-			<input type="submit" value="Assign Film to Hall">
-		</form> -->
-		
-	
-<form id="form" action="/assign" method="post">
-  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
-    <tr>
-      <td colspan="2"><div class="ui-widget">
-        <label>Select Cinema: </label>
-        <select name="cinema">
-          <option value="">Select one...</option>
-		  {% for cinema in cinemas %}
-					<option value="{{ cinema.key.id }}">{{ cinema.name }}</option>
-		  {% endfor %}
-        </select>
-      </div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div class="ui-widget">
-        <label>Select Film: </label>
-        <select id="movie_name" name="movie">
-          <option value="">Select one...</option>
-		{% for film in films %}
-			<option value="{{ film.key.id }}">{{ film.name }}</option>
-		{% endfor %}
-        </select>
-      </div></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="ui-widget" id="div_reel">
-		
-         </div>
-      </td>
-    </tr>
-	<tr>
-      <td colspan="2">
-        <div class="ui-widget">
-			<input type="checkbox" name="3d" value="True">3D<br>
-         </div>
-      </td>
-    </tr>
-    <tr>
-      <td><label for="from" class="inp_lbl">From</label><input type="text" id="datepicker_from" name="start_date" class="txt_box" /></td>
+    <!--
+            <form id="form" action="/assign" method="post">
+                Cinema Hall : <select name="cinema">
+                        <option value="">Please Select..</option>
+                    {% for cinema in cinemas %}
+                        <option value="{{ cinema.key.id }}">{{ cinema.name }}</option>
+                    {% endfor %}
+                </select><br>Movie : <select id="movie_name"  name="movie">
+                    <option value="">Please Select..</option>
+                    {% for film in films %}
+                        <option value="{{ film.key.id }}">{{ film.name }}</option>
+                    {% endfor %}
+                    </select><br>
 
-    </tr>
-    <tr>
-      <td colspan="2"><input type="submit" onclick="formSubmit()" class="none" value="ASSIGN FILM COPY TO CINEMA" style="width:100%;" /></td>
-    </tr>
-  </table>
-</form>
+                    <div id="div_reel">
 
-  <div class="ruler"></div>
-  
-  <div class="footer">
-    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in as <label class="active_txt">administrator</label></span>
-    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
-  </div>
-  
-  <div class="ruler"></div>
-  
-  <div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+                    </div><br>
+                Start Date : <input type="date" name="start_date"><br>
+                End Date : <input type="date" name="end_date"><br>
+                <input type="submit" value="Assign Film to Hall">
+            </form> -->
+
+
+    <form id="form" action="/assign" method="post">
+        <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+            <tr>
+                <td colspan="2">
+                    <div class="ui-widget">
+                        <label>Select Cinema: </label>
+                        <select name="cinema">
+                            <option value="">Select one...</option>
+                            {% for cinema in cinemas %}
+                            <option value="{{ cinema.key.id }}">{{ cinema.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="ui-widget">
+                        <label>Select Film: </label>
+                        <select id="movie_name" name="movie">
+                            <option value="">Select one...</option>
+                            {% for film in films %}
+                            <option value="{{ film.key.id }}">{{ film.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="ui-widget" id="div_reel">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="ui-widget">
+                        <input type="checkbox" name="3d" value="True">3D<br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="from" class="inp_lbl">From</label><input type="text" id="datepicker_from"
+                                                                         name="start_date" class="txt_box"/></td>
+
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" onclick="formSubmit()" class="none"
+                                       value="ASSIGN FILM COPY TO CINEMA" style="width:100%;"/></td>
+            </tr>
+        </table>
+    </form>
+
+    <div class="ruler"></div>
+
+    <div class="footer">
+        <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label
+                class="active_txt">{{ user.last_name }}</label> logged in as <label
+                class="active_txt">administrator</label></span>
+        <span style="float:right;"><span onclick="window.location.href='/'"
+                                         style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
+    </div>
+
+    <div class="ruler"></div>
+
+    <div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span
+            style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
 </div>
 </body>

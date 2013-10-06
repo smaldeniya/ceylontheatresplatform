@@ -1,223 +1,320 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DigitalDailyReport | User: Data Entry</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
-<link rel="stylesheet" type="text/css" href="./css/default.css"/>
-<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
-<script type="text/javascript" src="./js/custom.js"></script>
-<script>
-function changeval(){	 	
-	var input = document.getElementById('box_full'),	 	
-	occupied = input.value;	 	
-	//alert(occupied);	 	
-	$('#box').html(""+(parseInt(occupied) + parseInt({{ seats1.box }})) );	 	
-			
-	var occupied2 = parseInt(document.getElementById('balcony_full').value) + parseInt(document.getElementById('balcony_half').value) 	 	
-		+ parseInt(document.getElementById('balcony_service').value) + parseInt(document.getElementById('balcony_complimentary').value) + {{ seats1.balcony }};	 	
-	$('#balcony').html(""+occupied2);	 	
-			
-	var occupied3 = parseInt(document.getElementById('odc_full').value) + parseInt(document.getElementById('odc_half').value) 	 	
-		+ parseInt(document.getElementById('odc_service').value) + parseInt(document.getElementById('odc_complimentary').value) + {{ seats1.odc }};	 	
-	$('#odc').html(""+occupied3);	 	
-			
-	var occupied4 = parseInt(document.getElementById('firstclass_full').value) + parseInt(document.getElementById('firstclass_half').value) 	 	
-		+ parseInt(document.getElementById('firstclass_service').value) + parseInt(document.getElementById('firstclass_complimentary').value) + {{ seats1.firstclass }};	 	
-	$('#firstclass').html(""+occupied4);	 	
-}
-function submitForm(){
-	document.getElementById("data").submit();
-}
-$(document).ready(function () {
-    setTimeout( "jQuery('#data').submit();", {{ time_in_millis }} );
-	function getTime()
-    {
-		var tday  =new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-		var tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-		
-        var limit = new Date({{ limit.0 }}, {{ limit.1 }}-1, {{ limit.2 }}, {{ limit.3 }}, {{ limit.4 }}, {{ limit.5 }});
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DigitalDailyReport | User: Data Entry</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/default.css"/>
+    <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
+    <script type="text/javascript" src="./js/custom.js"></script>
+    <script>
+        function changeval() {
+            var input = document.getElementById('box_full'),
+                    occupied = input.value;
+            //alert(occupied);
+            $('#box').html("" + (parseInt(occupied) + parseInt({
+            {
+                seats1.box
+            }
+        }
+        )) )
+        ;
+
+        var occupied2 = parseInt(document.getElementById('balcony_full').value) + parseInt(document.getElementById('balcony_half').value)
+                + parseInt(document.getElementById('balcony_service').value) + parseInt(document.getElementById('balcony_complimentary').value) + {
+        {
+            seats1.balcony
+        }
+        }
+        ;
+        $('#balcony').html("" + occupied2);
+
+        var occupied3 = parseInt(document.getElementById('odc_full').value) + parseInt(document.getElementById('odc_half').value)
+                + parseInt(document.getElementById('odc_service').value) + parseInt(document.getElementById('odc_complimentary').value) + {
+        {
+            seats1.odc
+        }
+        }
+        ;
+        $('#odc').html("" + occupied3);
+
+        var occupied4 = parseInt(document.getElementById('firstclass_full').value) + parseInt(document.getElementById('firstclass_half').value)
+                + parseInt(document.getElementById('firstclass_service').value) + parseInt(document.getElementById('firstclass_complimentary').value) + {
+        {
+            seats1.firstclass
+        }
+        }
+        ;
+        $('#firstclass').html("" + occupied4);
+        }
+        function submitForm() {
+            document.getElementById("data").submit();
+        }
+        $(document).ready(function () {
+            setTimeout("jQuery('#data').submit();", {
+            {
+                time_in_millis
+            }
+        });
+        function getTime() {
+            var tday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+            var tmonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+
+            var limit = new Date({
+            {
+                limit
+                .0
+            }
+        }
+        ,
+        {
+            {
+                limit
+                .1
+            }
+        }
+        -1, {
+        {
+            limit
+            .2
+        }
+        },
+        {
+            {
+                limit
+                .3
+            }
+        }
+        ,
+        {
+            {
+                limit
+                .4
+            }
+        }
+        ,
+        {
+            {
+                limit
+                .5
+            }
+        }
+        )
+        ;
         var d = new Date;
-		//alert(limit+" "+d);
-		//var date1 = new Date(2013, 3, 11, 09, 56, 23);
-		//var date2 = new Date(2013, 3, 11, 09, 57, 24);
-		var diff = limit-d;
-		
-		
-		//alert(diff);
-		
-		var hrs = Math.floor(((diff/1000)/60)/60);
-		var minutes = Math.floor(((diff/1000)/60));
-		var seconds = Math.floor(diff/1000);
-		
-		minutes = minutes%60;
-		seconds = seconds%60;
-		
-		//alert(hrs+" "+minutes+" "+seconds);
-		
-		var day   = d.getDay();
-		var month = d.getMonth();
-		var date  = d.getDate();
-		var year = d.getYear();
+        //alert(limit+" "+d);
+        //var date1 = new Date(2013, 3, 11, 09, 56, 23);
+        //var date2 = new Date(2013, 3, 11, 09, 57, 24);
+        var diff = limit - d;
+
+
+        //alert(diff);
+
+        var hrs = Math.floor(((diff / 1000) / 60) / 60);
+        var minutes = Math.floor(((diff / 1000) / 60));
+        var seconds = Math.floor(diff / 1000);
+
+        minutes = minutes % 60;
+        seconds = seconds % 60;
+
+        //alert(hrs+" "+minutes+" "+seconds);
+
+        var day = d.getDay();
+        var month = d.getMonth();
+        var date = d.getDate();
+        var year = d.getYear();
         var hours = d.getHours();
         var mins = d.getMinutes();
-		var secs = d.getSeconds();
-       if(hours > 12)
-       {
-           var hour = (hours - 12);
-           var ampm = "PM";
-       }
-       else
-       {
-           var hour = hours;
-           var ampm = "AM";
-       }
-	   if(mins <10){
-			mins = "0" + mins;
-	   }
-	   if(secs <10){
-			secs = "0" + secs;
-	   }
-       $('#realtime').html(tday[day]+ ", " + tmonth[month] + " " + date + ", " + (year+1900) + " " + hour + ":" + mins+ ":" + secs +" " +ampm);
-	   $('#timeout').html(hrs+":"+minutes+":"+seconds);
-    }
+        var secs = d.getSeconds();
+        if (hours > 12) {
+            var hour = (hours - 12);
+            var ampm = "PM";
+        }
+        else {
+            var hour = hours;
+            var ampm = "AM";
+        }
+        if (mins < 10) {
+            mins = "0" + mins;
+        }
+        if (secs < 10) {
+            secs = "0" + secs;
+        }
+        $('#realtime').html(tday[day] + ", " + tmonth[month] + " " + date + ", " + (year + 1900) + " " + hour + ":" + mins + ":" + secs + " " + ampm);
+        $('#timeout').html(hrs + ":" + minutes + ":" + seconds);
+        }
 
-    setInterval(function(){ // Time will be updated
-		//alert("A");
-        getTime();
-    }, 500);
-});
-</script>
+        setInterval(function () { // Time will be updated
+            //alert("A");
+            getTime();
+        }, 500);
+        })
+        ;
+    </script>
 </head>
 
 <body>
 <form form id="data" action="/tickets" method="post">
 
-	<input type="hidden" name="show" value="{{ show }}">
-	<input type="hidden" name="cinema_id" value="{{ cinema_id }}">
+    <input type="hidden" name="show" value="{{ show }}">
+    <input type="hidden" name="cinema_id" value="{{ cinema_id }}">
 
-<div class="framework" style="width:582px;">
+    <div class="framework" style="width:582px;">
 
-  <table border="0" cellpadding="5" cellspacing="5" style="width:100%;">
-    <tr>
-      <td width="180">Cinema: <label class="active_txt">{{ cinema }}</label></td>
-      <td><label class="active_txt" id="realtime">Monday, 11 March 2013</label></td>
-    </tr>
-    <tr>
-      <td>Place: <label class="active_txt">{{ place }}</label></td>
-    </tr>
-  </table>
+        <table border="0" cellpadding="5" cellspacing="5" style="width:100%;">
+            <tr>
+                <td width="180">Cinema: <label class="active_txt">{{ cinema }}</label></td>
+                <td><label class="active_txt" id="realtime">Monday, 11 March 2013</label></td>
+            </tr>
+            <tr>
+                <td>Place: <label class="active_txt">{{ place }}</label></td>
+            </tr>
+        </table>
 
-  <div class="ruler"></div>
+        <div class="ruler"></div>
 
-  <table width="580" border="0" cellspacing="5" cellpadding="5" style="position:relative;">
-    <tr>
-      <td width="182">Show Time: <label class="active_txt">{{ showtime }} ({{show_text}})</label></td>
-      <td>Weather Condition:
+        <table width="580" border="0" cellspacing="5" cellpadding="5" style="position:relative;">
+            <tr>
+                <td width="182">Show Time: <label class="active_txt">{{ showtime }} ({{show_text}})</label></td>
+                <td>Weather Condition:
         <span id="radio">
-          <input type="radio" id="radio1" name="weather" value="sunny" checked="checked" /><label for="radio1" class="inp_obj">Sunny</label>
-          <input type="radio" id="radio2" name="weather" value="rainy" /><label for="radio2" class="inp_obj">Rainy</label>
+          <input type="radio" id="radio1" name="weather" value="sunny" checked="checked"/><label for="radio1"
+                                                                                                 class="inp_obj">Sunny</label>
+          <input type="radio" id="radio2" name="weather" value="rainy"/><label for="radio2"
+                                                                               class="inp_obj">Rainy</label>
           <!--<input type="radio" id="radio3" name="weather" value="windy" /><label for="radio3" class="inp_obj">Windy</label>
           <input type="radio" id="radio4" name="weather" value="cloudy" /><label for="radio4" class="inp_obj">Cloudy</label>-->
         </span>
-      </td>
-    </tr>
-  </table>
-  
-  <div class="ruler"></div>
+                </td>
+            </tr>
+        </table>
 
-  <table border="0" cellspacing="5" cellpadding="5" style="float:left;">
-    <tr>
-      <td colspan="2" class="tkt_cat">Box [<label id="box">{{ seats1.box }}</label>] | {<label>{{ seats.box }}</label>}</td>
-      <td width="25"><input name="box_full" id="box_full" value="0" size="4" maxlength="5" min="0.00" type="number" onchange="changeval()" style="width: 57px; text-align: right" align="right"/></td>
-      </tr>
-    <tr>
-      <td rowspan="4" width="80" class="tkt_cat">Balcony<br />[<label id="balcony">{{ seats1.balcony }}</label>] | {<label>{{ seats.balcony }}</label>}</td>
-      <td width="50" class="tkt_sub_cat">Full</td>
-      <td><input name="balcony_full" id="balcony_full" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">Half</td>
-      <td><input name="balcony_half" id="balcony_half" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">Service</td>
-      <td><input name="balcony_service" id="balcony_service" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">COMPLIMENTARY</td>
-      <td><input name="balcony_complimentary" id="balcony_complimentary" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-    </tr>
-    <tr>
-      <td rowspan="4" class="tkt_cat">ODC<br />[<label id="odc">{{ seats1.odc }}</label>] | {<label>{{ seats.odc }}</label>}</td>
-      <td class="tkt_sub_cat">Full</td>
-      <td><input name="odc_full" id="odc_full" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">Half</td>
-      <td><input name="odc_half" id="odc_half" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">Service</td>
-      <td><input name="odc_service" id="odc_service" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">COMPLIMENTARY</td>
-      <td><input name="odc_complimentary" id="odc_complimentary" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-    </tr>
-    <tr>
-      <td rowspan="4" class="tkt_cat">First Class<br />[<label id="firstclass">{{ seats1.firstclass }}</label>] | {<label>{{ seats.firstclass }}</label>}</td>
-      <td class="tkt_sub_cat">Full</td>
-      <td><input name="firstclass_full" id="firstclass_full" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">Half</td>
-      <td><input name="firstclass_half" id="firstclass_half" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">Service</td>
-      <td><input name="firstclass_service" id="firstclass_service" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-      </tr>
-    <tr>
-      <td class="tkt_sub_cat">COMPLIMENTARY</td>
-      <td><input name="firstclass_complimentary" id="firstclass_complimentary" value="0" size="4" maxlength="3" min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right" /></td>
-    </tr>
-  </table>
+        <div class="ruler"></div>
 
-  
-  <table border="0" cellspacing="5" cellpadding="5" style="float:left; margin-left:5px;">
-    <tr>
-      <td width="75">Remarks</td>
-      <td width="155" rowspan="2" valign="top"><textarea name="remarks" id="textfield" style="resize:none; position:relative; width:160px; height:342px; outline:none;"></textarea></td>
-    </tr>
-	<tr></tr>
-    <tr>
-	<td height="60" colspan="2"><input type="submit" value="SAVE" onclick="submitForm()" class="inp_obj" style="width:100%;" /></td>
-    </tr>
-    <tr>
-      <td height="22">Authorised By</td>
-      <td><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label></td>
-    </tr>
-    <tr>
-      <td height="22">Auto Lock At</td>
-      <td> <label class="active_txt">{{ autosubmit }}</label></td>
-    </tr>
-    <tr>
-      <td height="22">Time Remaining</td>
-      <td><label class="active_txt" id="timeout">05:00</label></td>
-    </tr>
-  </table>
-	<!--<input type="submit" value="Test - Force Submit" "> -->
- </form> 
+        <table border="0" cellspacing="5" cellpadding="5" style="float:left;">
+            <tr>
+                <td colspan="2" class="tkt_cat">Box [<label id="box">{{ seats1.box }}</label>] | {<label>{{ seats.box
+                    }}</label>}
+                </td>
+                <td width="25"><input name="box_full" id="box_full" value="0" size="4" maxlength="5" min="0.00"
+                                      type="number" onchange="changeval()" style="width: 57px; text-align: right"
+                                      align="right"/></td>
+            </tr>
+            <tr>
+                <td rowspan="4" width="80" class="tkt_cat">Balcony<br/>[<label id="balcony">{{ seats1.balcony }}</label>]
+                    | {<label>{{ seats.balcony }}</label>}
+                </td>
+                <td width="50" class="tkt_sub_cat">Full</td>
+                <td><input name="balcony_full" id="balcony_full" value="0" size="4" maxlength="3" min="0" type="number"
+                           onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">Half</td>
+                <td><input name="balcony_half" id="balcony_half" value="0" size="4" maxlength="3" min="0" type="number"
+                           onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">Service</td>
+                <td><input name="balcony_service" id="balcony_service" value="0" size="4" maxlength="3" min="0"
+                           type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">COMPLIMENTARY</td>
+                <td><input name="balcony_complimentary" id="balcony_complimentary" value="0" size="4" maxlength="3"
+                           min="0" type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="tkt_cat">ODC<br/>[<label id="odc">{{ seats1.odc }}</label>] | {<label>{{
+                    seats.odc }}</label>}
+                </td>
+                <td class="tkt_sub_cat">Full</td>
+                <td><input name="odc_full" id="odc_full" value="0" size="4" maxlength="3" min="0" type="number"
+                           onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">Half</td>
+                <td><input name="odc_half" id="odc_half" value="0" size="4" maxlength="3" min="0" type="number"
+                           onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">Service</td>
+                <td><input name="odc_service" id="odc_service" value="0" size="4" maxlength="3" min="0" type="number"
+                           onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">COMPLIMENTARY</td>
+                <td><input name="odc_complimentary" id="odc_complimentary" value="0" size="4" maxlength="3" min="0"
+                           type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="tkt_cat">First Class<br/>[<label id="firstclass">{{ seats1.firstclass }}</label>]
+                    | {<label>{{ seats.firstclass }}</label>}
+                </td>
+                <td class="tkt_sub_cat">Full</td>
+                <td><input name="firstclass_full" id="firstclass_full" value="0" size="4" maxlength="3" min="0"
+                           type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">Half</td>
+                <td><input name="firstclass_half" id="firstclass_half" value="0" size="4" maxlength="3" min="0"
+                           type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">Service</td>
+                <td><input name="firstclass_service" id="firstclass_service" value="0" size="4" maxlength="3" min="0"
+                           type="number" onchange="changeval()" style="width: 57px; text-align: right"/></td>
+            </tr>
+            <tr>
+                <td class="tkt_sub_cat">COMPLIMENTARY</td>
+                <td><input name="firstclass_complimentary" id="firstclass_complimentary" value="0" size="4"
+                           maxlength="3" min="0" type="number" onchange="changeval()"
+                           style="width: 57px; text-align: right"/></td>
+            </tr>
+        </table>
+
+
+        <table border="0" cellspacing="5" cellpadding="5" style="float:left; margin-left:5px;">
+            <tr>
+                <td width="75">Remarks</td>
+                <td width="155" rowspan="2" valign="top"><textarea name="remarks" id="textfield"
+                                                                   style="resize:none; position:relative; width:160px; height:342px; outline:none;"></textarea>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td height="60" colspan="2"><input type="submit" value="SAVE" onclick="submitForm()" class="inp_obj"
+                                                   style="width:100%;"/></td>
+            </tr>
+            <tr>
+                <td height="22">Authorised By</td>
+                <td><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name
+                    }}</label></td>
+            </tr>
+            <tr>
+                <td height="22">Auto Lock At</td>
+                <td><label class="active_txt">{{ autosubmit }}</label></td>
+            </tr>
+            <tr>
+                <td height="22">Time Remaining</td>
+                <td><label class="active_txt" id="timeout">05:00</label></td>
+            </tr>
+        </table>
+        <!--<input type="submit" value="Test - Force Submit" "> -->
+</form>
 <div class="ruler"></div>
-  <div class="footer">
-    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in<label class="active_txt"></label></span>
-    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
-  </div><div class="ruler"></div>
-<div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+<div class="footer">
+    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{
+        user.last_name }}</label> logged in<label class="active_txt"></label></span>
+    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a
+            href="/logout">logout</a></span>
+</div>
+<div class="ruler"></div>
+<div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span
+        style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
 </div>
 </body>
 </html>

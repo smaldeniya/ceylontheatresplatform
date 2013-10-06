@@ -1,51 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8"/>
     <title>{% block title %}Digital Daily Record{% endblock %}</title>
-	{% block headcontent %}
-	
-	{% endblock %}
+    {% block headcontent %}
+
+    {% endblock %}
     <style>
-      input {
-        display: block;
-      }
+        input {
+            display: block;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
 
-  <div class="content">
+<div class="content">
     {% block maincontent %}
 
     {% endblock %}
-  </div>
+</div>
 
-  <div>
+<div>
     <footer>
-      <hr/>
-      <p>
-        {% if not user %}
-          <a href="/login">Login (and forgot password)</a>
-        {% else %}
-          Logged in as <span style="background-color: OldLace">{{ user.first_name }} {{ user.last_name }}
+        <hr/>
+        <p>
+            {% if not user %}
+            <a href="/login">Login (and forgot password)</a>
+            {% else %}
+            Logged in as <span style="background-color: OldLace">{{ user.first_name }} {{ user.last_name }}
 		   (NIC No: {{ user.nic }})</span> | <a href="/logout">Logout</a>
-        {% endif %}
-        |
-        <a href="/">Home</a>
-        <!--|
-        <a href="/signup">New user</a>
-        |
-        <a href="/authenticated">Secured page</a> (you can see this after login)
-        |
-        <a href="/_ah/admin/datastore?kind=User">Browse users</a>
-        |
-        <a href="http://blog.abahgat.com/...">Tutorial</a>
-        |
-        <a href="http://github.com/abahgat/webapp2-user-accounts">Source code</a>-->
-      </p>
+            {% endif %}
+            |
+            <a href="/">Home</a>
+            <!--|
+            <a href="/signup">New user</a>
+            |
+            <a href="/authenticated">Secured page</a> (you can see this after login)
+            |
+            <a href="/_ah/admin/datastore?kind=User">Browse users</a>
+            |
+            <a href="http://blog.abahgat.com/...">Tutorial</a>
+            |
+            <a href="http://github.com/abahgat/webapp2-user-accounts">Source code</a>-->
+        </p>
     </footer>
-  </div>
-  </body>
+</div>
+</body>
 </html>

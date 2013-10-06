@@ -1,86 +1,93 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>DigitalDailyReport | User: Add Film</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
-<link rel="stylesheet" type="text/css" href="./css/default.css"/>
-<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
-<script type="text/javascript" src="./js/custom.js"></script>
-<script>
-function formSubmit(){
-	document.getElementById("form").submit();
-}
-</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>DigitalDailyReport | User: Add Film</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.10.1.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/default.css"/>
+    <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="./js/jquery-ui-1.10.1.custom.js"></script>
+    <script type="text/javascript" src="./js/custom.js"></script>
+    <script>
+        function formSubmit() {
+            document.getElementById("form").submit();
+        }
+    </script>
 </head>
 
 <body>
 <div class="framework" style="width:390px;">
-<form id="form" action="/addcopies" method="POST">
-  <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
-    <tr>
-      <td>
-        <div class="ui-widget">
-          <label>Film Title: </label>
-          <select id="combobox" class="inp_obj" name="film_id">
-            <option value="">Select one...</option>
-				{% for film in films %}
-					<option value="{{ film.key.id }}">{{ film.name }}</option>
-				{% endfor %}
-          </select>
-        </div>
-      </td>
-      <td width="50">
-        <input type="button" class="inp_obj" id="button" style="width:100%;" onclick="window.location.href='/addfilm'" value="ADD TITLE" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <label for="film_record_01" class="inp_lbl">Film Copy Record 01</label>
-        <input name="film_record_1" type="text" size="55" class="txt_box" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <label for="film_record_02" class="inp_lbl">Film Copy Record 02</label>
-        <input name="film_record_2" type="text" size="55" class="txt_box" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <label for="film_record_03" class="inp_lbl">Film Copy Record 03</label>
-        <input name="film_record_3" type="text" size="55" class="txt_box" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <label for="film_record_04" class="inp_lbl">Film Copy Record 04</label>
-        <input name="film_record_4" type="text" size="55" class="txt_box" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <label for="film_record_05" class="inp_lbl">Film Copy Record 05</label>
-        <input name="film_record_5" type="text" size="55" class="txt_box" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"><input type="submit" id="button" value="ADD COPY RECORDS" onclick="formSubmit()" class="inp_obj" style="width:100%;" /></td>
-    </tr>
-  </table>
-</form>
- <div class="ruler"></div>
-  
-  <div class="footer">
-    <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label class="active_txt">{{ user.last_name }}</label> logged in as <label class="active_txt">administrator</label></span>
-    <span style="float:right;"><span onclick="window.location.href='/'" style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
-  </div>
-  
-  <div class="ruler"></div>
-  
-  <div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
+    <form id="form" action="/addcopies" method="POST">
+        <table border="0" cellspacing="5" cellpadding="5" style="width:100%;">
+            <tr>
+                <td>
+                    <div class="ui-widget">
+                        <label>Film Title: </label>
+                        <select id="combobox" class="inp_obj" name="film_id">
+                            <option value="">Select one...</option>
+                            {% for film in films %}
+                            <option value="{{ film.key.id }}">{{ film.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                <td width="50">
+                    <input type="button" class="inp_obj" id="button" style="width:100%;"
+                           onclick="window.location.href='/addfilm'" value="ADD TITLE"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="film_record_01" class="inp_lbl">Film Copy Record 01</label>
+                    <input name="film_record_1" type="text" size="55" class="txt_box"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="film_record_02" class="inp_lbl">Film Copy Record 02</label>
+                    <input name="film_record_2" type="text" size="55" class="txt_box"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="film_record_03" class="inp_lbl">Film Copy Record 03</label>
+                    <input name="film_record_3" type="text" size="55" class="txt_box"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="film_record_04" class="inp_lbl">Film Copy Record 04</label>
+                    <input name="film_record_4" type="text" size="55" class="txt_box"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="film_record_05" class="inp_lbl">Film Copy Record 05</label>
+                    <input name="film_record_5" type="text" size="55" class="txt_box"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" id="button" value="ADD COPY RECORDS" onclick="formSubmit()"
+                                       class="inp_obj" style="width:100%;"/></td>
+            </tr>
+        </table>
+    </form>
+    <div class="ruler"></div>
+
+    <div class="footer">
+        <span style="text-align:left;"><label class="active_txt">{{ user.first_name }}</label> <label
+                class="active_txt">{{ user.last_name }}</label> logged in as <label
+                class="active_txt">administrator</label></span>
+        <span style="float:right;"><span onclick="window.location.href='/'"
+                                         style="cursor:pointer;">dashboard</span> | <a href="/logout">logout</a></span>
+    </div>
+
+    <div class="ruler"></div>
+
+    <div class="footer"><span style="text-align:left;">Version <label class="active_txt">1.0.0</label></span> <span
+            style="float:right;">&copy; GlobalMesh Solutions | Powered By YA LABZ</span></div>
 </div>
 </body>
