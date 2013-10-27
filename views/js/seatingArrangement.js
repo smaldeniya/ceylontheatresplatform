@@ -85,6 +85,22 @@ function formSubmit() {
     formData['show']= jQuery("[name=show]").val();
     formData['cinema_id']= jQuery("[name=cinema_id]").val()
 
+    jQuery.ajaxSetup({
+        beforeSend:function(){
+            // show image here
+            $("#busyIcon").show();
+            $("#makeReservationTop").hide();
+            $("#makeReservationBottom").hide();
+        },
+        complete:function(){
+            // hide image here
+            $("#makeReservationTop").show(10000);
+            $("#makeReservationBottom").show(10000);
+            $("#busyIcon").hide(10000);
+        }
+    });
+
+
     jQuery.ajax({
         url : "/seatplan",
         type: "POST",

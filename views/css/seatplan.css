@@ -10,3 +10,13 @@ table td {
     padding-top: 16px;
     color: white;
 }
+
+
+.busy_icon {
+    position: inherit;
+    width: 25px;
+    height: 25px;
+    float: right;
+    top: -10px;
+    right: 5px;
+}

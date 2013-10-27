@@ -352,11 +352,15 @@ class TicketingReserveHandler(BaseHandler):
                         ticketprint[inc].ticket_type = str.upper(type.split('_')[1])
                         ticketprint[inc].ticket_no = (qResult.opening + type_inc)
                         ticketprint[inc].price = "LKR " + str(price) + "0"
-                        ticketprint[inc].seat_number = seatNumbers[seatNumbersIndex];
+                        ticketprint[inc].seat_number = seatNumbers[seatNumbersIndex]
 
+                        #seat = TicketReservation.gql('Where seat_number=:1 And show_record_id=:2', seatNumbers[seatNumbersIndex],show_id)
+                        #logging.info("seat is " + str(seatNumbers[seatNumbersIndex]) + " for show rechord " + str(showrecord) + " is " + str(seat))
+                        #if(not seat):
                         TicketReservation(parent=showrecord, seat_number=seatNumbers[seatNumbersIndex],
-                                          ticket_type=str.upper(type.split('_')[0] + "_" + type.split('_')[1]),
-                                          show_record_id=show_id, late_sale=latesale).put()
+                                              ticket_type=str.upper(type.split('_')[0] + "_" + type.split('_')[1]),
+                                              show_record_id=show_id, late_sale=latesale, sale_person=showrecord.user_nic,
+                                              sale_time=showrecord.date).put()
 
                         if (type.split('_')[1] == 'complimentary'):
                             ticketprint[inc].price = "FREE"
